@@ -1,10 +1,12 @@
 {
   "name": "react-simple-sidenav",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "React component for side navigation, supports click and touch events.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src/ -d lib/",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -22,5 +24,14 @@
   "bugs": {
     "url": "https://github.com/gauravchl/react-simple-sidenav/issues"
   },
-  "homepage": "https://github.com/gauravchl/react-simple-sidenav#readme"
+  "homepage": "https://github.com/gauravchl/react-simple-sidenav#readme",
+  "dependencies": {
+    "react": "^15.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0"
+  }
 }
