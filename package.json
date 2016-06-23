@@ -1,6 +1,6 @@
 {
   "name": "react-simple-sidenav",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React component for side navigation, supports click and touch events.",
   "main": "lib/index.js",
   "scripts": {
@@ -13,11 +13,7 @@
     "url": "git+https://github.com/gauravchl/react-simple-sidenav.git"
   },
   "keywords": [
-    "react",
-    "sidenav",
-    "side",
-    "navigation",
-    "leftnav"
+
   ],
   "author": "Gaurav Chikhale",
   "license": "MIT",
