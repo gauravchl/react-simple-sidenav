@@ -1,17 +1,16 @@
-# react-simple-sidenav [![npm](https://img.shields.io/npm/v/react-simple-sidenav.svg?maxAge=2592000)](https://www.npmjs.com/package/react-simple-sidenav) [![npm](https://img.shields.io/npm/dm/react-simple-sidenav.svg?maxAge=2592000)](https://www.npmjs.com/package/react-simple-sidenav)
+# react-simple-sidenav [![npm](https://img.shields.io/npm/v/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav) [![npm](https://img.shields.io/npm/dm/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav)
 
 A simple React component for side navigation, Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
 
-Demo:  https://gauravchl.github.io/react-simple-sidenav/example/
+**Demo:**  https://gauravchl.github.io/react-simple-sidenav/example/
 
 **Install:**
 ```
 npm install react-simple-sidenav
-
 ```
 
 **Use:**
-```
+```html
 import SideNav from 'react-simple-sidenav';
 
 <SideNav
@@ -28,6 +27,7 @@ import SideNav from 'react-simple-sidenav';
 Props | Type | Description
 ------|------ | -------------
 style | object | Style for root element
+navStyle | object | Style for nav element
 showNav | boolean | Control whether to open or close side navigation
 onShowNav | function | Trigger when navigation opens
 onHideNav | function | Trigger when navigation close
@@ -37,7 +37,7 @@ children  | node | Content of navigation
 
 **Example:**
 
-```
+```html
 import React   from 'react'
 import SideNav from 'react-simple-sidenav';
 
