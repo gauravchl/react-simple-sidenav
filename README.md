@@ -101,8 +101,3 @@ var Layout = React.createClass({
 })
 
 ```
-
-
-
-> Touch event support will come soon
->
