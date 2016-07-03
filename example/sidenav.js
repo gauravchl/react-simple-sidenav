@@ -8,7 +8,6 @@ SideNav = React.createClass({
     showNav: React.PropTypes.bool,
     onHideNav: React.PropTypes.func,
     onShowNav: React.PropTypes.func
-
   },
 
   getInitialState: function getInitialState() {
@@ -24,12 +23,37 @@ SideNav = React.createClass({
     return true;
   },
   showNav: function showNav() {
-    this.refs.nav.style['transition'] = 'transform 0.33s cubic-bezier(0,0,0.3,1)';
+    this.refs.nav.style.transition = 'transform 0.33s cubic-bezier(0,0,0.3,1)';
     this.setState({ showNav: true }, this.props.onShowNav);
   },
   hideNav: function hideNav() {
-    this.refs.nav.style['transition'] = 'transform 0.13s cubic-bezier(0,0,0.3,1)';
+    this.refs.nav.style.transition = 'transform 0.13s cubic-bezier(0,0,0.3,1)';
     this.setState({ showNav: false }, this.props.onHideNav);
+  },
+  onTouchStart: function onTouchStart(evt) {
+    this.startX = evt.touches[0].pageX;
+    this.currentX = this.startX;
+    this.touchingSideNav = true;
+    requestAnimationFrame(this.update);
+  },
+  onTouchMove: function onTouchMove(evt) {
+    if (!this.touchingSideNav) return;
+    this.currentX = evt.touches[0].pageX;
+    var translateX = Math.min(0, this.currentX - this.startX);
+    if (translateX < 0) evt.preventDefault();
+  },
+  onTouchEnd: function onTouchEnd(evt) {
+    if (!this.touchingSideNav) return;
+    this.touchingSideNav = false;
+    var translateX = Math.min(0, this.currentX - this.startX);
+    this.refs.nav.style.transform = '';
+    if (translateX < 0) this.hideNav();
+  },
+  update: function update() {
+    if (!this.touchingSideNav) return;
+    requestAnimationFrame(this.update);
+    var translateX = Math.min(0, this.currentX - this.startX);
+    this.refs.nav.style.transform = 'translateX(' + translateX + 'px)';
   },
   getStyle: function getStyle() {
     var styles = {
@@ -80,9 +104,14 @@ SideNav = React.createClass({
       React.createElement('div', { style: styles.overlay, onClick: this.hideNav }),
       React.createElement(
         'nav',
-        { style: styles.nav, onTransitionEnd: function onTransitionEnd(e) {
-            e.target.style['transition'] = 'none';
-          }, ref: 'nav' },
+        { style: styles.nav,
+          onTransitionEnd: function onTransitionEnd(e) {
+            e.target.style.transition = 'none';
+          },
+          onTouchStart: this.onTouchStart,
+          onTouchMove: this.onTouchMove,
+          onTouchEnd: this.onTouchEnd,
+          ref: 'nav' },
         this.props.children || ''
       )
     );
