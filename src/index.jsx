@@ -1,57 +1,73 @@
 import React from 'react';
 
 let SideNav = React.createClass({
-  propTypes : {
-    style     : React.PropTypes.object,
-    navStyle  : React.PropTypes.object,
-    children  : React.PropTypes.node,
-    showNav   : React.PropTypes.bool,
-    onHideNav : React.PropTypes.func,
-    onShowNav : React.PropTypes.func
-
+  propTypes: {
+    style:     React.PropTypes.object,
+    navStyle:  React.PropTypes.object,
+    children:  React.PropTypes.node,
+    showNav:   React.PropTypes.bool,
+    onHideNav: React.PropTypes.func,
+    onShowNav: React.PropTypes.func,
   },
 
-
-
-  getInitialState(){
+  getInitialState() {
     return {
-      showNav: this.props.showNav || false
-    }
+      showNav: this.props.showNav || false,
+    };
   },
 
-
-
-  componentWillReceiveProps(nextProps){
-    if(nextProps.showNav != this.props.showNav && nextProps.showNav != this.state.showNav)
-      nextProps.showNav ? this.showNav() : this.hideNav()
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.showNav != this.props.showNav && nextProps.showNav != this.state.showNav)
+      nextProps.showNav ? this.showNav() : this.hideNav();
   },
 
-
-
-  shouldComponentUpdate(nextProps, nextStates){
-    if(nextProps.showNav != this.props.showNav && nextProps.showNav == this.state.showNav)
-      return false
-    return true
+  shouldComponentUpdate(nextProps, nextStates) {
+    if (nextProps.showNav != this.props.showNav && nextProps.showNav == this.state.showNav)
+      return false;
+    return true;
   },
 
-
-
-  showNav(){
-    this.refs.nav.style['transition'] = 'transform 0.33s cubic-bezier(0,0,0.3,1)';
-    this.setState({showNav: true}, this.props.onShowNav);
+  showNav() {
+    this.refs.nav.style.transition = 'transform 0.33s cubic-bezier(0,0,0.3,1)';
+    this.setState({ showNav: true }, this.props.onShowNav);
   },
 
-
-
-  hideNav(){
-    this.refs.nav.style['transition'] = 'transform 0.13s cubic-bezier(0,0,0.3,1)';
-    this.setState({showNav: false}, this.props.onHideNav);
+  hideNav() {
+    this.refs.nav.style.transition = 'transform 0.13s cubic-bezier(0,0,0.3,1)';
+    this.setState({ showNav: false }, this.props.onHideNav);
   },
 
+  onTouchStart(evt) {
+    this.startX = evt.touches[0].pageX;
+    this.currentX = this.startX;
+    this.touchingSideNav = true;
+    requestAnimationFrame(this.update);
+  },
 
+  onTouchMove(evt) {
+    if (!this.touchingSideNav) return;
+    this.currentX = evt.touches[0].pageX;
+    const translateX = Math.min(0, this.currentX - this.startX);
+    if (translateX < 0) evt.preventDefault();
+  },
 
-  getStyle(){
-    let styles= {
+  onTouchEnd(evt) {
+    if (!this.touchingSideNav) return;
+    this.touchingSideNav = false;
+    const translateX = Math.min(0, this.currentX - this.startX);
+    this.refs.nav.style.transform = '';
+    if (translateX < 0) this.hideNav();
+  },
+
+  update() {
+    if (!this.touchingSideNav) return;
+    requestAnimationFrame(this.update);
+    const translateX = Math.min(0, this.currentX - this.startX);
+    this.refs.nav.style.transform = `translateX(${translateX}px)`;
+  },
+
+  getStyle() {
+    let styles = {
       root: {
         left     : 0,
         top      : 0,
@@ -94,12 +110,17 @@ let SideNav = React.createClass({
 
 
 
-  render(){
+  render() {
     let styles = this.getStyle();
     return(
       <aside style={styles.root}>
         <div style={styles.overlay} onClick={this.hideNav}></div>
-        <nav style={styles.nav} onTransitionEnd={(e) => {e.target.style['transition']='none'}} ref="nav">
+        <nav style={styles.nav}
+          onTransitionEnd={(e) => { e.target.style.transition = 'none' }}
+          onTouchStart={this.onTouchStart}
+          onTouchMove={this.onTouchMove}
+          onTouchEnd={this.onTouchEnd}
+          ref="nav">
           {this.props.children || ''}
         </nav>
       </aside>
