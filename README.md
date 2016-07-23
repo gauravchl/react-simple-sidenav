@@ -1,6 +1,6 @@
 # react-simple-sidenav [![npm](https://img.shields.io/npm/v/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav) [![npm](https://img.shields.io/npm/dm/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav)
 
-A simple React component for side navigation, Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
+Simple, light weight, fully customizable React component for side navigation, Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
 
 **Demo:**  https://gauravchl.github.io/react-simple-sidenav/example/
 
@@ -14,13 +14,9 @@ npm install react-simple-sidenav
 import SideNav from 'react-simple-sidenav';
 
 <SideNav
-  style={}
-  showNav={}
-  onHideNav={}
-  onShowNav={}
-  navStyle={} >
-
-</SideNav>
+  title="Simple Sidenav"
+  items={['Item 1', 'Item 2']}
+  />
 ```
 **Props:**
 
@@ -31,15 +27,21 @@ navStyle | object | Style for nav element
 showNav | boolean | Control whether to open or close side navigation
 onShowNav | function | Trigger when navigation opens
 onHideNav | function | Trigger when navigation close
-children  | node | Content of navigation
+title      | node | Will display on top
+titleStyle | object | Styles for title
+items      | [node] | Array of items in navigation list below the title
+itemStyle  | object | Styles for item
+itemHoverStyle | object | Hover style for item
+children  | node | Content of navigation. If supplying children to SideNav, title and items will be ignore and replaced by children
 
 
 
-**Example:**
+
+**Example:** (with default title and item list)
 
 ```html
 import React   from 'react'
-import SideNav from 'react-simple-sidenav';
+import SideNav, {MenuIcon} from 'react-simple-sidenav';
 
 
 var Layout = React.createClass({
@@ -51,49 +53,22 @@ var Layout = React.createClass({
   },
 
 
-  getSideNavContent(){
-    let styles={
-      title:{
-        background: '#E91E63',
-        color: '#fff',
-        fontWeight: 400,
-        margin: 0,
-        lineHeight: '82px',
-        padding: 22
-      },
-      li:{
-        padding: 22,
-        cursor: 'pointer'
-      }
-    };
-
-    return (
-      <div>
-        <h1 style={styles.title}>Simple SideNav</h1>
-        <ul>
-          <li style={styles.li}>Item 1</li>
-          <li style={styles.li}>Item 2</li>
-        </ul>
-      </div>
-    )
-  },
-
 
   render(){
     return (
       <div>
         <div style={{width:'100%', background:"#0AC"}}>
-          <div style={{padding: 14}} onClick={() => this.setState({showNav: !this.state.showNav})}>
-            <svg xmlns="http://www.w3.org/2000/svg" cursor="pointer" fill="#fff" height="24" viewBox="0 0 24 24" width="24">
-              <path d="M0 0h24v24H0z" fill="none"/>
-              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-            </svg>
-          </div>
+          <MenuIcon onclick={() => this.setState({showNav: !this.state.showNav})} />
         </div>
 
-        <SideNav showNav={this.state.showNav} onHideNav={()=>this.setState({showNav:false})}>
-          {this.getSideNavContent()}
-        </SideNav>
+        <SideNav
+          showNav = {this.state.showNav}
+          onHideNav = {() => this.setState({showNav:false})}
+          title = 'My Simple SideNav'
+          items = {[<a href='/home'>home</a>, <a href='/about'>about</a> ]}
+
+          />
+
       </div>
     )
   }
@@ -101,3 +76,5 @@ var Layout = React.createClass({
 })
 
 ```
+
+To see more example with all available options please see the [Demo here](https://gauravchl.github.io/react-simple-sidenav/example/).
