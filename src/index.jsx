@@ -12,6 +12,7 @@ let SideNav = React.createClass({
     titleStyle : React.PropTypes.object,
     items      : React.PropTypes.arrayOf(React.PropTypes.node),
     itemStyle  : React.PropTypes.object,
+    itemHoverStyle : React.PropTypes.object,
   },
 
   getInitialState() {
@@ -71,6 +72,7 @@ let SideNav = React.createClass({
   },
 
 
+
   getDefaultContent(){
     let styles={
       title:{
@@ -84,18 +86,26 @@ let SideNav = React.createClass({
       li:{
         padding: 22,
         cursor: 'pointer',
+        backgroundColor: '#fff',
       }
     };
 
     Object.assign(styles.li, this.props.itemStyle);
     Object.assign(styles.title, this.props.titleStyle);
 
+    let handleItemHover = (e, enter) => {
+      if(enter)
+        Object.assign(e.currentTarget.style, styles.li, (this.props.itemHoverStyle || {backgroundColor: '#f5f5f5'}))
+      else
+        Object.assign(e.currentTarget.style, styles.li)
+    };
+
     return (
       <div>
         <h1 style={styles.title}>{this.props.title || 'Simple SideNav'}</h1>
         <ul>
           { this.props.items
-            ? this.props.items.map((item) => <li style={styles.li}>{item}</li>)
+            ? this.props.items.map((item) => <li style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
             : (<li style={styles.li}>Item 1</li>)
           }
         </ul>
@@ -149,6 +159,8 @@ let SideNav = React.createClass({
 
   render() {
     let styles = this.getStyle();
+
+
     return(
       <aside style={styles.root}>
         <div style={styles.overlay} onClick={this.hideNav}></div>
