@@ -8,6 +8,10 @@ let SideNav = React.createClass({
     showNav:   React.PropTypes.bool,
     onHideNav: React.PropTypes.func,
     onShowNav: React.PropTypes.func,
+    title      : React.PropTypes.node,
+    titleStyle : React.PropTypes.object,
+    items      : React.PropTypes.arrayOf(React.PropTypes.node),
+    itemStyle  : React.PropTypes.object,
   },
 
   getInitialState() {
@@ -66,6 +70,39 @@ let SideNav = React.createClass({
     this.refs.nav.style.transform = `translateX(${translateX}px)`;
   },
 
+
+  getDefaultContent(){
+    let styles={
+      title:{
+        background: '#E91E63',
+        color: '#fff',
+        fontWeight: 400,
+        margin: 0,
+        lineHeight: '82px',
+        padding: 22,
+      },
+      li:{
+        padding: 22,
+        cursor: 'pointer',
+      }
+    };
+
+    Object.assign(styles.li, this.props.itemStyle);
+    Object.assign(styles.title, this.props.titleStyle);
+
+    return (
+      <div>
+        <h1 style={styles.title}>{this.props.title || 'Simple SideNav'}</h1>
+        <ul>
+          { this.props.items
+            ? this.props.items.map((item) => <li style={styles.li}>{item}</li>)
+            : (<li style={styles.li}>Item 1</li>)
+          }
+        </ul>
+      </div>
+    )
+  },
+
   getStyle() {
     let styles = {
       root: {
@@ -121,7 +158,7 @@ let SideNav = React.createClass({
           onTouchMove={this.onTouchMove}
           onTouchEnd={this.onTouchEnd}
           ref="nav">
-          {this.props.children || ''}
+          {this.props.children || this.getDefaultContent()}
         </nav>
       </aside>
     )
