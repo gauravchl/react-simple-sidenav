@@ -8,6 +8,11 @@ let SideNav = React.createClass({
     showNav:   React.PropTypes.bool,
     onHideNav: React.PropTypes.func,
     onShowNav: React.PropTypes.func,
+    title      : React.PropTypes.node,
+    titleStyle : React.PropTypes.object,
+    items      : React.PropTypes.arrayOf(React.PropTypes.node),
+    itemStyle  : React.PropTypes.object,
+    itemHoverStyle : React.PropTypes.object,
   },
 
   getInitialState() {
@@ -66,6 +71,48 @@ let SideNav = React.createClass({
     this.refs.nav.style.transform = `translateX(${translateX}px)`;
   },
 
+
+
+  getDefaultContent(){
+    let styles={
+      title:{
+        background: '#E91E63',
+        color: '#fff',
+        fontWeight: 400,
+        margin: 0,
+        lineHeight: '82px',
+        padding: 22,
+      },
+      li:{
+        padding: 22,
+        cursor: 'pointer',
+        backgroundColor: '#fff',
+      }
+    };
+
+    Object.assign(styles.li, this.props.itemStyle);
+    Object.assign(styles.title, this.props.titleStyle);
+
+    let handleItemHover = (e, enter) => {
+      if(enter)
+        Object.assign(e.currentTarget.style, styles.li, (this.props.itemHoverStyle || {backgroundColor: '#f5f5f5'}))
+      else
+        Object.assign(e.currentTarget.style, styles.li)
+    };
+
+    return (
+      <div>
+        <h1 style={styles.title}>{this.props.title || 'Simple SideNav'}</h1>
+        <ul>
+          { this.props.items
+            ? this.props.items.map((item) => <li style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
+            : (<li style={styles.li}>Item 1</li>)
+          }
+        </ul>
+      </div>
+    )
+  },
+
   getStyle() {
     let styles = {
       root: {
@@ -112,6 +159,8 @@ let SideNav = React.createClass({
 
   render() {
     let styles = this.getStyle();
+
+
     return(
       <aside style={styles.root}>
         <div style={styles.overlay} onClick={this.hideNav}></div>
@@ -121,11 +170,26 @@ let SideNav = React.createClass({
           onTouchMove={this.onTouchMove}
           onTouchEnd={this.onTouchEnd}
           ref="nav">
-          {this.props.children || ''}
+          {this.props.children || this.getDefaultContent()}
         </nav>
       </aside>
     )
   }
 });
 
+
+let MenuIcon = React.createClass({
+  render() {
+    return (
+      <svg {...this.props} xmlns="http://www.w3.org/2000/svg" cursor="pointer" fill="#fff" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+    )
+  }
+});
+
+
+
+export {SideNav, MenuIcon};
 export default SideNav;
