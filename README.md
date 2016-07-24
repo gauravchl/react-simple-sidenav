@@ -4,6 +4,10 @@ Simple, light weight, fully customizable React component for side navigation, In
 
 **Demo:**  https://gauravchl.github.io/react-simple-sidenav/example/
 
+<img width="400" alt="screen shot 2016-07-24 at 2 28 16 pm" src="https://cloud.githubusercontent.com/assets/3471415/17082916/f53e196e-51ab-11e6-84bc-9fc36068c42e.png">
+
+
+
 **Install:**
 ```
 npm install react-simple-sidenav
@@ -37,44 +41,59 @@ children  | node | Content of navigation. If supplying children to SideNav, titl
 
 
 
-**Example:** (with default title and item list)
+**Examples:**
+
+[with default styles]
 
 ```html
-import React   from 'react'
-import SideNav, {MenuIcon} from 'react-simple-sidenav';
+  import react from 'react';
+  import SideNav, {MenuIcon} from 'react-simple-sidenav';
 
-
-var Layout = React.createClass({
-
-  getInitialState(){
-    return {
-      showNav: false
-    }
-  },
-
-
-
-  render(){
-    return (
-      <div>
-        <div style={{width:'100%', background:"#0AC"}}>
-          <MenuIcon onclick={() => this.setState({showNav: !this.state.showNav})} />
-        </div>
+  React.createClass({
+    render() {
+      return(
+        <MenuIcon onClick={() => this.setState({showNav: true})}/>
 
         <SideNav
           showNav = {this.state.showNav}
-          onHideNav = {() => this.setState({showNav:false})}
-          title = 'My Simple SideNav'
-          items = {[<a href='/home'>home</a>, <a href='/about'>about</a> ]}
-
-          />
-
-      </div>
-    )
-  }
-
-})
+          onHideNav = {() => this.setState({showNav: false})} />
+      )
+    }
+  })
 
 ```
 
-To see more example with all available options please see the [Demo here](https://gauravchl.github.io/react-simple-sidenav/example/).
+[with custom styles]
+
+```html
+
+  <SideNav
+    showNav        =  {this.state.showNav}
+    onHideNav      =  {() => this.setState({showNav: false})}
+    title          =  "Hello World"
+    items          =  {['home', 'services', 'about', 'contact']}
+    titleStyle     =  {{backgroundColor: '#4CAF50'}}
+    itemStyle      =  {{backgroundColor: '#fff'}}
+    itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
+    />
+
+```
+
+[with custom items]
+
+```html
+  <SideNav
+    showNav={this.state.showNav3}
+    onHideNav={()=>this.setState({showNav3:false})}
+    title={<div>Hello octo <img src='git-mark.png' width='26' /></div>}
+    titleStyle={{backgroundColor: '#2196F3'}}
+    items={[
+      <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
+      <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
+      <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
+      ]} />
+
+
+```
+
+To see the demo of above examples [follow this link](https://gauravchl.github.io/react-simple-sidenav/example/).
