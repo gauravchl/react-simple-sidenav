@@ -105,8 +105,8 @@ let SideNav = React.createClass({
         <h1 style={styles.title}>{this.props.title || 'Simple SideNav'}</h1>
         <ul>
           { this.props.items
-            ? this.props.items.map((item) => <li style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
-            : (<li style={styles.li}>Item 1</li>)
+            ? this.props.items.map((item, key) => <li key={'item'+key} style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
+            : <li key="item1" style={styles.li}>Item 1</li>
           }
         </ul>
       </div>
