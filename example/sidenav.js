@@ -100,10 +100,10 @@ SideNav = React.createClass({
       React.createElement(
         'ul',
         null,
-        this.props.items ? this.props.items.map(function (item) {
+        this.props.items ? this.props.items.map(function (item, key) {
           return React.createElement(
             'li',
-            { style: styles.li, onMouseOver: function onMouseOver(e) {
+            { key: 'item' + key, style: styles.li, onMouseOver: function onMouseOver(e) {
                 return handleItemHover(e, true);
               }, onMouseOut: function onMouseOut(e) {
                 return handleItemHover(e, false);
@@ -112,7 +112,7 @@ SideNav = React.createClass({
           );
         }) : React.createElement(
           'li',
-          { style: styles.li },
+          { key: 'item1', style: styles.li },
           'Item 1'
         )
       )
