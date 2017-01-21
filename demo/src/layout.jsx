@@ -16,6 +16,16 @@ let Layout = React.createClass({
   getStyle() {
 
     let styles = {
+      menuBar: {
+        width: '100%',
+        background: '#0AC',
+        color: '#fff',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'fixed',
+        zIndex: 2,
+        top: 0,
+      },
       exampleWrapper: {
         textAlign: 'center',
       },
@@ -59,10 +69,13 @@ let Layout = React.createClass({
   render() {
     let styles = this.getStyle();
     return (
-      <div>
-        <div style={{width: '100%', background: '#0AC', color: '#fff'}}>
+      <div style={{paddingTop: 48}}>
+        <div style={styles.menuBar}>
           <MenuIcon onClick={()=>this.setState({showNav1: true})} style={{verticalAlign: 'middle', padding: '12px'}}/>
           Demo [react-simple-sidenav]
+          <a style={{margin: '0 8px 0 auto'}} href='https://github.com/gauravchl/react-simple-sidenav'>
+            <img width='28' src='git-mark.png'/>
+          </a>
         </div>
 
 

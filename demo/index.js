@@ -21531,6 +21531,16 @@
 	  getStyle: function getStyle() {
 
 	    var styles = {
+	      menuBar: {
+	        width: '100%',
+	        background: '#0AC',
+	        color: '#fff',
+	        display: 'flex',
+	        alignItems: 'center',
+	        position: 'fixed',
+	        zIndex: 2,
+	        top: 0
+	      },
 	      exampleWrapper: {
 	        textAlign: 'center'
 	      },
@@ -21575,14 +21585,19 @@
 	    var styles = this.getStyle();
 	    return _react2.default.createElement(
 	      'div',
-	      null,
+	      { style: { paddingTop: 48 } },
 	      _react2.default.createElement(
 	        'div',
-	        { style: { width: '100%', background: '#0AC', color: '#fff' } },
+	        { style: styles.menuBar },
 	        _react2.default.createElement(_index.MenuIcon, { onClick: function onClick() {
 	            return _this.setState({ showNav1: true });
 	          }, style: { verticalAlign: 'middle', padding: '12px' } }),
-	        'Demo [react-simple-sidenav]'
+	        'Demo [react-simple-sidenav]',
+	        _react2.default.createElement(
+	          'a',
+	          { style: { margin: '0 8px 0 auto' }, href: 'https://github.com/gauravchl/react-simple-sidenav' },
+	          _react2.default.createElement('img', { width: '28', src: 'git-mark.png' })
+	        )
 	      ),
 	      _react2.default.createElement(
 	        'div',
