@@ -2,7 +2,7 @@
 
 Simple, light weight, fully customizable React component for side navigation, Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
 
-**Demo:**  https://gauravchl.github.io/react-simple-sidenav/example/
+**Demo:**  https://gauravchl.github.io/react-simple-sidenav/demo/
 
 <img width="400" alt="screen shot 2016-07-24 at 2 28 16 pm" src="https://cloud.githubusercontent.com/assets/3471415/17082916/f53e196e-51ab-11e6-84bc-9fc36068c42e.png">
 
@@ -90,10 +90,10 @@ children  | node | Content of navigation. If supplying children to SideNav, titl
     items={[
       <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
       <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
-      <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
+      <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/demo/'>demo</a>
       ]} />
 
 
 ```
 
-To see the demo of above examples [follow this link](https://gauravchl.github.io/react-simple-sidenav/example/).
+To see the demo of above examples [follow this link](https://gauravchl.github.io/react-simple-sidenav/demo/).
