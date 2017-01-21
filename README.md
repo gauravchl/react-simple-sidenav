@@ -98,7 +98,7 @@ children  | node | Content of navigation. If supplying children to SideNav, titl
 
 **Contributing:**
 
-Please feel free submit any bugs or suggestions as issues. Pull requests are welcome.
+Please feel free to submit any bugs or suggestions as issues. Pull requests are welcome.
 To build package locally run following commands which will build the package from source and update the demo inside `react-simple-sidenav/demo/`.
 
   ```
