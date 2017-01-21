@@ -54,32 +54,14 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _index = __webpack_require__(178);
+	var _layout = __webpack_require__(178);
 
-	var _index2 = _interopRequireDefault(_index);
+	var _layout2 = _interopRequireDefault(_layout);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var HelloWorld = _react2.default.createClass({
-	  displayName: 'HelloWorld',
-
-	  propTypes: {},
-
-	  getInitialState: function getInitialState() {
-	    return {};
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      'React Image Story',
-	      _react2.default.createElement(_index2.default, null)
-	    );
-	  }
-	});
-
 	document.addEventListener('DOMContentLoaded', function () {
-	  _reactDom2.default.render(_react2.default.createElement(HelloWorld, null), document.getElementById('main'));
+	  _reactDom2.default.render(_react2.default.createElement(_layout2.default, null), document.getElementById('main'));
 	});
 
 /***/ },
@@ -21518,6 +21500,224 @@
 
 /***/ },
 /* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _index = __webpack_require__(179);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Layout = _react2.default.createClass({
+	  displayName: 'Layout',
+	  getInitialState: function getInitialState() {
+	    return {
+	      showNav1: false,
+	      showNav2: false,
+	      showNav3: false,
+	      showNav4: false
+	    };
+	  },
+	  getStyle: function getStyle() {
+
+	    var styles = {
+	      exampleWrapper: {
+	        textAlign: 'center'
+	      },
+	      exampleBox: {
+	        textAlign: 'left',
+	        maxWidth: 500,
+	        width: '90%',
+	        margin: '32px 12px',
+	        display: 'inline-block'
+	      },
+	      topBar: {
+	        background: '#0ac',
+	        color: '#fff',
+	        fontSize: '14px'
+	      },
+
+	      codeWrap: {
+	        background: '#f5f5f5',
+	        whiteSpace: 'pre',
+	        overflow: 'scroll',
+	        height: 300
+	      },
+	      bg1: {
+	        backgroundColor: '#e91e63'
+	      },
+	      bg2: {
+	        backgroundColor: '#4CAF50'
+	      },
+	      bg3: {
+	        backgroundColor: '#2196F3'
+	      },
+	      menuIcon: {
+	        padding: 12,
+	        verticalAlign: 'middle'
+	      }
+	    };
+	    return styles;
+	  },
+	  render: function render() {
+	    var _this = this;
+
+	    var styles = this.getStyle();
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'div',
+	        { style: { width: '100%', background: '#0AC', color: '#fff' } },
+	        _react2.default.createElement(_index.MenuIcon, { onClick: function onClick() {
+	            return _this.setState({ showNav1: true });
+	          }, style: { verticalAlign: 'middle', padding: '12px' } }),
+	        'Demo [react-simple-sidenav]'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { style: styles.exampleWrapper },
+	        _react2.default.createElement(
+	          'div',
+	          { style: styles.exampleBox },
+	          _react2.default.createElement(
+	            'div',
+	            { style: Object.assign({}, styles.topBar, styles.bg1) },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'ripple' },
+	              _react2.default.createElement(_index.MenuIcon, { style: styles.menuIcon, onClick: function onClick() {
+	                  return _this.setState({ showNav1: true });
+	                } })
+	            ),
+	            'Demo 1 [with default styles]'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: styles.codeWrap },
+	            _react2.default.createElement(
+	              'code',
+	              null,
+	              example1
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: styles.exampleBox },
+	          _react2.default.createElement(
+	            'div',
+	            { style: Object.assign({}, styles.topBar, styles.bg2) },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'ripple delay-1' },
+	              _react2.default.createElement(_index.MenuIcon, { style: styles.menuIcon, onClick: function onClick() {
+	                  return _this.setState({ showNav2: true });
+	                } })
+	            ),
+	            'Demo 2 [with custom styles]'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: styles.codeWrap },
+	            _react2.default.createElement(
+	              'code',
+	              null,
+	              example2
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { style: styles.exampleBox },
+	          _react2.default.createElement(
+	            'div',
+	            { style: Object.assign({}, styles.topBar, styles.bg3) },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'ripple delay-2' },
+	              _react2.default.createElement(_index.MenuIcon, { style: styles.menuIcon, onClick: function onClick() {
+	                  return _this.setState({ showNav3: true });
+	                } })
+	            ),
+	            'Demo 3 [with custom items]'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { style: styles.codeWrap },
+	            _react2.default.createElement(
+	              'code',
+	              null,
+	              example3
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(_index2.default, {
+	        showNav: this.state.showNav1,
+	        onHideNav: function onHideNav() {
+	          return _this.setState({ showNav1: false });
+	        } }),
+	      _react2.default.createElement(_index2.default, {
+	        showNav: this.state.showNav2,
+	        onHideNav: function onHideNav() {
+	          return _this.setState({ showNav2: false });
+	        },
+	        title: 'Hello World',
+	        titleStyle: { backgroundColor: '#4CAF50' },
+	        items: ['home', 'services', 'about', 'contact'],
+	        itemStyle: { backgroundColor: '#fff' },
+	        itemHoverStyle: { backgroundColor: '#CDDC39' } }),
+	      _react2.default.createElement(_index2.default, {
+	        showNav: this.state.showNav3,
+	        onHideNav: function onHideNav() {
+	          return _this.setState({ showNav3: false });
+	        },
+	        title: _react2.default.createElement(
+	          'div',
+	          null,
+	          'Hello octo ',
+	          _react2.default.createElement('img', { src: 'git-mark.png', width: '26' })
+	        ),
+	        titleStyle: { backgroundColor: '#2196F3' },
+	        items: [_react2.default.createElement(
+	          'a',
+	          { target: '_blank', href: 'https://github.com/gauravchl/react-simple-sidenav' },
+	          'View Source on github'
+	        ), _react2.default.createElement(
+	          'a',
+	          { target: '_blank', href: 'https://www.npmjs.com/package/react-simple-sidenav' },
+	          'Install via npm'
+	        ), _react2.default.createElement(
+	          'a',
+	          { target: '_blank', href: 'https://gauravchl.github.io/react-simple-sidenav/example' },
+	          'demo'
+	        )] })
+	    );
+	  }
+	});
+
+	exports.default = Layout;
+
+
+	var example1 = '\n  import react from \'react\';\n  import SideNav, {MenuIcon} from \'react-simple-sidenav\';\n\n  React.createClass({\n    render() {\n      return(\n        <MenuIcon onClick={() => this.setState({showNav: true})}/>\n\n        <SideNav\n          showNav = {this.state.showNav}\n          onHideNav = {() => this.setState({showNav: false})} />\n      )\n    }\n  })\n';
+
+	var example2 = '\n  <SideNav\n    showNav        =  {this.state.showNav}\n    onHideNav      =  {() => this.setState({showNav: false})}\n    title          =  "Hello World"\n    items          =  {[\'home\', \'services\', \'about\', \'contact\']}\n    titleStyle     =  {{backgroundColor: \'#4CAF50\'}}\n    itemStyle      =  {{backgroundColor: \'#fff\'}}\n    itemHoverStyle =  {{backgroundColor: \'#CDDC39\'}}\n    />\n\n';
+
+	var example3 = '\n  <SideNav\n    showNav={this.state.showNav3}\n    onHideNav={()=>this.setState({showNav3:false})}\n    title={<div>Hello octo <img src=\'git-mark.png\' width=\'26\' /></div>}\n    titleStyle={{backgroundColor: \'#2196F3\'}}\n    items={[\n      <a target=\'_blank\' href=\'https://github.com/gauravchl/react-simple-sidenav\'>View Source on github</a>,\n      <a target=\'_blank\' href=\'https://www.npmjs.com/package/react-simple-sidenav\'>Install via npm</a>,\n      <a target=\'_blank\' href=\'https://gauravchl.github.io/react-simple-sidenav/example\'>demo</a>\n      ]} />\n\n';
+
+/***/ },
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

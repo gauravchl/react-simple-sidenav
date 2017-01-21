@@ -1,0 +1,56 @@
+body{
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li:hover{
+  background: #E0E0E0;
+}
+
+
+.ripple{
+  position: relative;
+  display: inline-block;
+}
+.ripple:after{
+  content: '';
+  width: 48px;
+  height: 48px;
+  opacity: 0;
+  position: absolute;
+  background: rgba(0,0,0,.6);
+  border-radius: 50%;
+  animation: ripple 4s infinite;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: auto;
+  pointer-events: none;
+}
+.ripple.delay-1:after{
+  animation-delay: 2s
+}
+.ripple.delay-2:after{
+  animation-delay: 3s
+}
+
+@keyframes ripple {
+  0%{
+    transform: scale(0);
+    opacity: 1;
+  }
+  40%{
+    transform: scale(1);
+    opacity: 0;
+  }
+  100%{
+    transform: scale(1);
+    opacity: 0
+  }
+}
