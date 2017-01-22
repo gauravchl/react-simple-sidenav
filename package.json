@@ -1,11 +1,11 @@
 {
   "name": "react-simple-sidenav",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A simple React component for side navigation",
   "main": "dist/simple-sidenav.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack -p",
     "prepublish": "npm run build"
   },
   "repository": {
