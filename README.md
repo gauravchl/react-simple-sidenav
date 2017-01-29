@@ -28,14 +28,15 @@ Props | Type | Description
 ------|------ | -------------
 style | object | Style for root element
 navStyle | object | Style for nav element
-showNav | boolean | Control whether to open or close side navigation
-onShowNav | function | Trigger when navigation opens
-onHideNav | function | Trigger when navigation close
-title      | node | Will display on top
 titleStyle | object | Styles for title
-items      | [node] | Array of items in navigation list below the title
 itemStyle  | object | Styles for item
 itemHoverStyle | object | Hover style for item
+title      | node | Will display on top
+items      | [node] | Array of items in navigation list below the title
+showNav | boolean | Control whether to open or close side navigation
+openFromRight | boolean | This opens navigation from right side of the window, default is false (from left side).
+onShowNav | function | Trigger when navigation opens
+onHideNav | function | Trigger when navigation close
 children  | node | Content of navigation. If supplying children to SideNav, title and items will be ignore and replaced by children
 
 

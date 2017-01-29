@@ -2,17 +2,18 @@ import React from 'react';
 
 let SideNav = React.createClass({
   propTypes: {
-    style:     React.PropTypes.object,
-    navStyle:  React.PropTypes.object,
-    children:  React.PropTypes.node,
-    showNav:   React.PropTypes.bool,
-    onHideNav: React.PropTypes.func,
-    onShowNav: React.PropTypes.func,
-    title      : React.PropTypes.node,
-    titleStyle : React.PropTypes.object,
-    items      : React.PropTypes.arrayOf(React.PropTypes.node),
-    itemStyle  : React.PropTypes.object,
-    itemHoverStyle : React.PropTypes.object,
+    style:          React.PropTypes.object,
+    navStyle:       React.PropTypes.object,
+    titleStyle:     React.PropTypes.object,
+    itemStyle:      React.PropTypes.object,
+    itemHoverStyle: React.PropTypes.object,
+    title:          React.PropTypes.node,
+    children:       React.PropTypes.node,
+    items:          React.PropTypes.arrayOf(React.PropTypes.node),
+    showNav:        React.PropTypes.bool,
+    openFromRight:  React.PropTypes.bool,
+    onHideNav:      React.PropTypes.func,
+    onShowNav:      React.PropTypes.func,
   },
 
   getInitialState() {
@@ -73,9 +74,9 @@ let SideNav = React.createClass({
 
 
 
-  getDefaultContent(){
-    let styles={
-      title:{
+  getDefaultContent() {
+    let styles = {
+      title: {
         background: '#E91E63',
         color: '#fff',
         fontWeight: 400,
@@ -83,18 +84,18 @@ let SideNav = React.createClass({
         lineHeight: '82px',
         padding: 22,
       },
-      li:{
+      li: {
         padding: 22,
         cursor: 'pointer',
         backgroundColor: '#fff',
-      }
+      },
     };
 
     Object.assign(styles.li, this.props.itemStyle);
     Object.assign(styles.title, this.props.titleStyle);
 
     let handleItemHover = (e, enter) => {
-      if(enter)
+      if (enter)
         Object.assign(e.currentTarget.style, styles.li, (this.props.itemHoverStyle || {backgroundColor: '#f5f5f5'}))
       else
         Object.assign(e.currentTarget.style, styles.li)
@@ -105,8 +106,8 @@ let SideNav = React.createClass({
         <h1 style={styles.title}>{this.props.title || 'Simple SideNav'}</h1>
         <ul>
           { this.props.items
-            ? this.props.items.map((item, key) => <li key={'item'+key} style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
-            : <li key="item1" style={styles.li}>Item 1</li>
+            ? this.props.items.map((item, key) => <li key={'item' + key} style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
+            : <li key='item1' style={styles.li}>Item 1</li>
           }
         </ul>
       </div>
@@ -114,6 +115,8 @@ let SideNav = React.createClass({
   },
 
   getStyle() {
+    let { showNav } = this.state;
+    let { openFromRight } = this.props;
     let styles = {
       root: {
         left     : 0,
@@ -123,7 +126,7 @@ let SideNav = React.createClass({
         position : 'fixed',
         overflow : 'hidden',
         zIndex   : 8,
-        pointerEvents : this.state.showNav ? 'auto' : 'none'
+        pointerEvents : showNav ? 'auto' : 'none'
       },
       nav: {
         position   : 'relative',
@@ -132,10 +135,11 @@ let SideNav = React.createClass({
         height     : '100%',
         background : '#FFF',
         boxShadow  : '2px 0 12px rgba(0,0,0,0.4)',
-        transform  : this.state.showNav ? 'none' : 'translateX(-102%)',
+        transform  : showNav ? 'none' : `translateX(${openFromRight ? 102 : -102}%)`,
         display    : 'flex',
         willChange : 'transform',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        float: openFromRight ? 'right' : 'left',
       },
       overlay:{
         position : 'absolute',
@@ -143,7 +147,7 @@ let SideNav = React.createClass({
         height   : '100%',
         top      : 0,
         left     : 0,
-        opacity  : this.state.showNav ? 1 : 0 ,
+        opacity  : showNav ? 1 : 0 ,
         background : 'rgba(0,0,0,0.4)',
         transition : 'opacity 0.3s cubic-bezier(0, 0, 0.3, 1)',
         willChange : 'opacity',

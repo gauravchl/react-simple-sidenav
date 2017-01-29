@@ -57,6 +57,9 @@ let Layout = React.createClass({
       bg3: {
         backgroundColor: '#2196F3',
       },
+      bg4: {
+        backgroundColor: '#FF5722',
+      },
       menuIcon: {
         padding: 12,
         verticalAlign: 'middle',
@@ -107,6 +110,16 @@ let Layout = React.createClass({
             </div>
             <div style={styles.codeWrap}><code>{example3}</code></div>
           </div>
+
+          <div style={styles.exampleBox}>
+            <div style={Object.assign({}, styles.topBar, styles.bg4)}>
+              <div className='ripple delay-2'>
+                <MenuIcon style={styles.menuIcon} onClick={()=>this.setState({showNav4: true})}/>
+              </div>
+              Demo 4 [open from right]
+            </div>
+            <div style={styles.codeWrap}><code>{example4}</code></div>
+          </div>
         </div>
 
 
@@ -118,7 +131,7 @@ let Layout = React.createClass({
           showNav={this.state.showNav2}
           onHideNav={()=>this.setState({showNav2: false})}
           title='Hello World'
-          titleStyle={{backgroundColor: '#4CAF50'}}
+          titleStyle={styles.bg2}
           items={['home', 'services', 'about', 'contact']}
           itemStyle={{backgroundColor: '#fff'}}
           itemHoverStyle={{backgroundColor: '#CDDC39'}} />
@@ -127,12 +140,20 @@ let Layout = React.createClass({
           showNav={this.state.showNav3}
           onHideNav={()=>this.setState({showNav3: false})}
           title={<div>Hello octo <img src='git-mark.png' width='26'/></div>}
-          titleStyle={{backgroundColor: '#2196F3'}}
+          titleStyle={styles.bg3}
           items={[
             <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
             <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
             <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>,
             ]} />
+
+        <SideNav
+          openFromRight={true}
+          showNav={this.state.showNav4}
+          onHideNav={()=>this.setState({showNav4: false})}
+          title='Open From right'
+          titleStyle={styles.bg4}
+          items={['Item1', 'Item2', 'Item3']} />
 
 
       </div>
@@ -187,4 +208,13 @@ const example3 = `
       <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
       ]} />
 
+`
+const example4 = `
+  <SideNav
+    openFromRight={true}
+    showNav={this.state.showNav4}
+    onHideNav={()=>this.setState({showNav4: false})}
+    title='Open From right'
+    titleStyle={{backgroundColor: '#FF5722'}}
+    items={['Item1', 'Item2', 'Item3']} />
 `
