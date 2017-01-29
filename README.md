@@ -1,6 +1,8 @@
 # react-simple-sidenav [![npm](https://img.shields.io/npm/v/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav) [![npm](https://img.shields.io/npm/dm/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav)
 
-Simple, light weight, fully customizable React component for side navigation, Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
+Simple, light weight(4.78 kB), fully customizable React component for side navigation.
+
+Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
 
 **Demo:**  https://gauravchl.github.io/react-simple-sidenav/demo/
 
