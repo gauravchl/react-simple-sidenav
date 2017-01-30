@@ -51,24 +51,29 @@ let SideNav = React.createClass({
   },
 
   onTouchMove(evt) {
+    let { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.currentX = evt.touches[0].pageX;
-    const translateX = Math.min(0, this.currentX - this.startX);
-    if (translateX < 0) evt.preventDefault();
+    const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
+    if (!openFromRight && translateX < 0) evt.preventDefault();
+    if (openFromRight && translateX > 0) evt.preventDefault();
   },
 
   onTouchEnd(evt) {
+    let { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.touchingSideNav = false;
-    const translateX = Math.min(0, this.currentX - this.startX);
+    const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
     this.refs.nav.style.transform = '';
-    if (translateX < 0) this.hideNav();
+    if (!openFromRight && translateX < 0) this.hideNav();
+    if (openFromRight && translateX > 0) this.hideNav();
   },
 
   update() {
+    let { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     requestAnimationFrame(this.update);
-    const translateX = Math.min(0, this.currentX - this.startX);
+    const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
     this.refs.nav.style.transform = `translateX(${translateX}px)`;
   },
 
