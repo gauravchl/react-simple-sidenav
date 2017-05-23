@@ -1,19 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class';
 
-let SideNav = React.createClass({
+let SideNav = createReactClass({
   propTypes: {
-    style:          React.PropTypes.object,
-    navStyle:       React.PropTypes.object,
-    titleStyle:     React.PropTypes.object,
-    itemStyle:      React.PropTypes.object,
-    itemHoverStyle: React.PropTypes.object,
-    title:          React.PropTypes.node,
-    children:       React.PropTypes.node,
-    items:          React.PropTypes.arrayOf(React.PropTypes.node),
-    showNav:        React.PropTypes.bool,
-    openFromRight:  React.PropTypes.bool,
-    onHideNav:      React.PropTypes.func,
-    onShowNav:      React.PropTypes.func,
+    style:          PropTypes.object,
+    navStyle:       PropTypes.object,
+    titleStyle:     PropTypes.object,
+    itemStyle:      PropTypes.object,
+    itemHoverStyle: PropTypes.object,
+    title:          PropTypes.node,
+    children:       PropTypes.node,
+    items:          PropTypes.arrayOf(PropTypes.node),
+    showNav:        PropTypes.bool,
+    openFromRight:  PropTypes.bool,
+    onHideNav:      PropTypes.func,
+    onShowNav:      PropTypes.func,
   },
 
   getInitialState() {
@@ -187,7 +189,7 @@ let SideNav = React.createClass({
 });
 
 
-let MenuIcon = React.createClass({
+let MenuIcon = createReactClass({
   render() {
     return (
       <svg {...this.props} xmlns="http://www.w3.org/2000/svg" cursor="pointer" fill="#fff" height="24" viewBox="0 0 24 24" width="24">
