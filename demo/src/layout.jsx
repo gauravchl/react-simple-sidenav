@@ -1,8 +1,9 @@
 import React from 'react';
 import SideNav, { MenuIcon } from '../../src/index.jsx';
+import createReactClass from 'create-react-class';
 
 
-let Layout = React.createClass({
+let Layout = createReactClass({
   getInitialState() {
     return {
       showNav1: false,
