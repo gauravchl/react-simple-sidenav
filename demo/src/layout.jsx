@@ -1,17 +1,18 @@
 import React from 'react';
 import SideNav, { MenuIcon } from '../../src/index.jsx';
-import createReactClass from 'create-react-class';
 
 
-let Layout = createReactClass({
-  getInitialState() {
-    return {
+class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       showNav1: false,
       showNav2: false,
       showNav3: false,
       showNav4: false,
     }
-  },
+
+  }
 
 
   getStyle() {
@@ -67,7 +68,7 @@ let Layout = createReactClass({
       },
     }
     return styles;
-  },
+  }
 
 
   render() {
@@ -126,6 +127,7 @@ let Layout = createReactClass({
 
         <SideNav
           showNav={this.state.showNav1}
+          onShowNav={_ => console.log('onShowNav')}
           onHideNav={()=>this.setState({showNav1: false})} />
 
         <SideNav
@@ -159,8 +161,8 @@ let Layout = createReactClass({
 
       </div>
     )
-  },
-})
+  }
+}
 
 
 export default Layout
