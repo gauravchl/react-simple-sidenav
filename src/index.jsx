@@ -1,4 +1,4 @@
-import React from 'react';
+import React     from 'react';
 import PropTypes from 'prop-types';
 
 class SideNav extends React.Component {
@@ -14,27 +14,27 @@ class SideNav extends React.Component {
     this.getStyle = this.getStyle.bind(this);
   }
 
-  hideNav() {
+  hideNav = () => {
     const { onHideNav } = this.props;
     onHideNav && onHideNav();
   }
 
-  onTouchStart(evt) {
+  onTouchStart = evt => {
     this.startX = evt.touches[0].pageX;
     this.currentX = this.startX;
     this.touchingSideNav = true;
     requestAnimationFrame(this.update);
   }
 
-  onTouchMove(evt) {
+  onTouchMove = evt => {
     let { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.currentX = evt.touches[0].pageX;
     const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
   }
 
-  onTouchEnd(evt) {
-    let { openFromRight } = this.props;
+  onTouchEnd = evt => {
+    const { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.touchingSideNav = false;
     const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
@@ -43,18 +43,17 @@ class SideNav extends React.Component {
     if (openFromRight && translateX > 0) this.hideNav();
   }
 
-  update() {
-    let { openFromRight } = this.props;
+  update = () => {
+    const { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     requestAnimationFrame(this.update);
     const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
     this._nav.current.style.transform = `translateX(${translateX}px)`;
   }
 
-
-
-  getDefaultContent() {
-    let styles = {
+  getDefaultContent = () => {
+    const { items, itemStyle, titleStyle, itemHoverStyle, title } = this.props
+    const styles = {
       title: {
         background: '#E91E63',
         color: '#fff',
@@ -70,22 +69,22 @@ class SideNav extends React.Component {
       },
     };
 
-    Object.assign(styles.li, this.props.itemStyle);
-    Object.assign(styles.title, this.props.titleStyle);
+    Object.assign(styles.li, itemStyle);
+    Object.assign(styles.title, titleStyle);
 
-    let handleItemHover = (e, enter) => {
+    const handleItemHover = e => enter => {
       if (enter)
-        Object.assign(e.currentTarget.style, styles.li, (this.props.itemHoverStyle || {backgroundColor: '#f5f5f5'}))
+        Object.assign(e.currentTarget.style, styles.li, (itemHoverStyle || {backgroundColor: '#f5f5f5'}))
       else
         Object.assign(e.currentTarget.style, styles.li)
     };
 
     return (
       <div>
-        <h1 style={styles.title}>{this.props.title || 'Simple SideNav'}</h1>
+        <h1 style={styles.title}>{title || 'Simple SideNav'}</h1>
         <ul>
-          { this.props.items
-            ? this.props.items.map((item, key) => <li key={'item' + key} style={styles.li} onMouseOver={(e)=> handleItemHover(e, true)} onMouseOut={(e)=>handleItemHover(e, false)}>{item}</li>)
+          {items
+            ? items.map((item, key) => <li key={'item' + key} style={styles.li} onMouseOver={handleItemHover(true)} onMouseOut={handleItemHover(false)}>{item}</li>)
             : <li key='item1' style={styles.li}>Item 1</li>
           }
         </ul>
@@ -93,7 +92,7 @@ class SideNav extends React.Component {
     )
   }
 
-  getStyle() {
+  getStyle = () => {
     const { openFromRight, showNav } = this.props;
     let styles = {
       root: {
@@ -138,11 +137,8 @@ class SideNav extends React.Component {
     return styles;
   }
 
-
-
   render() {
     let styles = this.getStyle();
-
 
     return(
       <aside style={styles.root}>
@@ -159,8 +155,6 @@ class SideNav extends React.Component {
       </aside>
     )
   }
-
-
 }
 
 SideNav.propTypes = {
@@ -177,7 +171,6 @@ SideNav.propTypes = {
   onHideNav:      PropTypes.func,
   onShowNav:      PropTypes.func,
 }
-
 
 let MenuIcon = props => (
   <svg

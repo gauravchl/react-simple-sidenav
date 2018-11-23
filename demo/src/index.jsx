@@ -1,6 +1,6 @@
-import React from 'react';
+import React    from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './layout.jsx';
+import Layout   from './layout.jsx';
 
 
 document.addEventListener('DOMContentLoaded', () => {
