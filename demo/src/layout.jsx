@@ -60,6 +60,13 @@ export default class Layout extends Component {
     },
   }
 
+  toggleSideNav = key => () => {
+    this.setState(prevState => {
+      const value = !prevState[key]
+      return { [key]: value }
+    })
+  }
+
   render() {
     const { showNav1, showNav2, showNav3, showNav4 } = this.state
     const styles = this.styles;
@@ -67,7 +74,7 @@ export default class Layout extends Component {
     return (
       <div style={{paddingTop: 48}}>
         <div style={styles.menuBar}>
-          <MenuIcon onClick={() => this.setState({showNav1: true})} style={{verticalAlign: 'middle', padding: '12px'}}/>
+          <MenuIcon onClick={this.toggleSideNav('showNav1')} style={{verticalAlign: 'middle', padding: '12px'}}/>
           Demo [react-simple-sidenav]
           <a style={{margin: '0 8px 0 auto'}} href='https://github.com/gauravchl/react-simple-sidenav'>
             <img width='28' src='git-mark.png'/>
@@ -77,7 +84,7 @@ export default class Layout extends Component {
         <div style={styles.exampleWrapper}>
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg1)}>
-              <div className='ripple'><MenuIcon style={styles.menuIcon} onClick={() => this.setState({showNav1: true})}/></div>
+              <div className='ripple'><MenuIcon style={styles.menuIcon} onClick={this.toggleSideNav('showNav1')}/></div>
               Demo 1 [with default styles]
             </div>
             <div style={styles.codeWrap}><code>{example1}</code></div>
@@ -86,7 +93,7 @@ export default class Layout extends Component {
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg2)}>
               <div className='ripple delay-1'>
-                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({showNav2: true})}/>
+                <MenuIcon style={styles.menuIcon} onClick={this.toggleSideNav('showNav2')}/>
               </div>
               Demo 2 [with custom styles]
             </div>
@@ -96,7 +103,7 @@ export default class Layout extends Component {
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg3)}>
               <div className='ripple delay-2'>
-                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({showNav3: true})}/>
+                <MenuIcon style={styles.menuIcon} onClick={this.toggleSideNav('showNav3')}/>
               </div>
               Demo 3 [with custom items]
             </div>
@@ -106,7 +113,7 @@ export default class Layout extends Component {
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg4)}>
               <div className='ripple delay-2'>
-                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({showNav4: true})}/>
+                <MenuIcon style={styles.menuIcon} onClick={this.toggleSideNav('showNav4')}/>
               </div>
               Demo 4 [open from right]
             </div>
@@ -117,11 +124,11 @@ export default class Layout extends Component {
         <SideNav
           showNav={showNav1}
           onShowNav={_ => console.log('onShowNav')}
-          onHideNav={() => this.setState({showNav1: false})} />
+          onHideNav={this.toggleSideNav('showNav1')} />
 
         <SideNav
           showNav={showNav2}
-          onHideNav={() => this.setState({showNav2: false})}
+          onHideNav={this.toggleSideNav('showNav2')}
           title='Hello World'
           titleStyle={styles.bg2}
           items={['home', 'services', 'about', 'contact']}
@@ -130,7 +137,7 @@ export default class Layout extends Component {
 
         <SideNav
           showNav={showNav3}
-          onHideNav={() => this.setState({showNav3: false})}
+          onHideNav={this.toggleSideNav('showNav3')}
           title={<div>Hello octo <img src='git-mark.png' width='26'/></div>}
           titleStyle={styles.bg3}
           items={[
@@ -142,7 +149,7 @@ export default class Layout extends Component {
         <SideNav
           openFromRight={true}
           showNav={showNav4}
-          onHideNav={() => this.setState({showNav4: false})}
+          onHideNav={this.toggleSideNav('showNav4')}
           title='Open From right'
           titleStyle={styles.bg4}
           items={['Item1', 'Item2', 'Item3']} />
@@ -156,11 +163,11 @@ const example1 = `
   React.createClass({
     render() {
       return(
-        <MenuIcon onClick={() => this.setState({showNav1: true})}/>
+        <MenuIcon onClick={this.toggleSideNav('showNav1')}/>
 
         <SideNav
           showNav = {showNav1}
-          onHideNav = {() => this.setState({showNav1: false})} />
+          onHideNav = {this.toggleSideNav('showNav1')} />
       )
     }
   })
@@ -169,7 +176,7 @@ const example1 = `
 const example2 = `
   <SideNav
     showNav        =  {showNav2}
-    onHideNav      =  {() => this.setState({showNav2: false})}
+    onHideNav      =  {this.toggleSideNav('showNav2')}
     title          =  "Hello World"
     items          =  {['home', 'services', 'about', 'contact']}
     titleStyle     =  {{backgroundColor: '#4CAF50'}}
@@ -182,7 +189,7 @@ const example2 = `
 const example3 = `
   <SideNav
     showNav={showNav3}
-    onHideNav={() => this.setState({showNav3:false})}
+    onHideNav={this.toggleSideNav('showNav3'):false})}
     title={<div>Hello octo <img src='git-mark.png' width='26' /></div>}
     titleStyle={{backgroundColor: '#2196F3'}}
     items={[
@@ -198,7 +205,7 @@ const example4 = `
   <SideNav
     openFromRight={true}
     showNav={showNav4}
-    onHideNav={() => this.setState({showNav4: false})}
+    onHideNav={this.toggleSideNav('showNav4')}
     title='Open From right'
     titleStyle={{backgroundColor: '#FF5722'}}
     items={['Item1', 'Item2', 'Item3']} />
