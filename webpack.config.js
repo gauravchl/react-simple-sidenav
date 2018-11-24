@@ -6,7 +6,7 @@ var SRC_DIR = path.resolve(__dirname, 'src');
 var DEMO_DIR = path.resolve(__dirname, 'demo');
 
 var config = {
-  entry: SRC_DIR + '/index.jsx',
+  entry: `${SRC_DIR}/index.jsx`,
   output: {
     path: DIST_DIR,
     filename: 'simple-sidenav.js',
@@ -31,7 +31,7 @@ var config = {
 };
 
 demoConfig = {
-  entry: DEMO_DIR + '/src/index.jsx',
+  entry: `${DEMO_DIR}/src/index.jsx`,
   output: {
     path: DEMO_DIR,
     filename: 'index.js',
@@ -41,7 +41,7 @@ demoConfig = {
       {
         test: /.jsx?$/,
         include: [
-          DEMO_DIR + '/src',
+          `${DEMO_DIR}/src`,
           SRC_DIR,
         ],
         exclude: /node_modules/,
@@ -50,7 +50,7 @@ demoConfig = {
         }
       }
     ]
-  }
+  },
 }
 
 module.exports = [config, demoConfig];

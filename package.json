@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development --progress",
-    "prepublish": "npm run build",
-    "nuke": "rm -rf node_modules"
+    "nuke": "rm -rf node_modules/ ./demo/node_modules/"
   },
   "repository": {
     "type": "git",
@@ -37,6 +36,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "webpack": "^4.26.0",
     "webpack-cli": "^3.1.2"
   },

@@ -1,5 +1,5 @@
 import React, { Component }   from 'react';
-import SideNav, { MenuIcon }  from 'react-simple-sidenav';
+import SideNav, { MenuIcon }  from '../../src/index.jsx';
 
 export default class Layout extends Component {
   state = {
@@ -9,7 +9,7 @@ export default class Layout extends Component {
     showNav4: false,
   }
 
-  style = {
+  styles = {
     menuBar: {
       width: '100%',
       background: '#0AC',
@@ -175,7 +175,7 @@ const example2 = `
     titleStyle     =  {{backgroundColor: '#4CAF50'}}
     itemStyle      =  {{backgroundColor: '#fff'}}
     itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
-    />
+  />
 
 `
 
@@ -189,7 +189,8 @@ const example3 = `
       <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
       <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
       <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
-      ]} />
+    ]}
+  />
 
 `
 
