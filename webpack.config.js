@@ -1,26 +1,31 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-var DIST_DIR = path.resolve(__dirname, 'dist');
-var SRC_DIR = path.resolve(__dirname, 'src');
-var DEMO_DIR = path.resolve(__dirname, 'demo');
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const SRC_DIR = path.resolve(__dirname, 'src');
+const DEMO_DIR = path.resolve(__dirname, 'demo');
 
-var config = {
-  entry: `${SRC_DIR}/index.jsx`,
+const config = {
+  entry: {
+    'simple-sidenav': `${SRC_DIR}/index.jsx`,
+    demo: `${DEMO_DIR}/src/index.jsx`
+  },
   output: {
     path: DIST_DIR,
-    filename: 'simple-sidenav.js',
+    filename: '[name].js',
     libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
       {
-        test: /.jsx?$/,
+        test: /\.jsx\?$/,
         include: SRC_DIR,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: [
+          'babel-loader',
+          'eslint-loader'
+        ]
       }
     ]
   },
@@ -30,27 +35,25 @@ var config = {
   },
 };
 
-demoConfig = {
-  entry: `${DEMO_DIR}/src/index.jsx`,
-  output: {
-    path: DEMO_DIR,
-    filename: 'index.js',
-  },
-  module: {
-    rules: [
-      {
-        test: /.jsx?$/,
-        include: [
-          `${DEMO_DIR}/src`,
-          SRC_DIR,
-        ],
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      }
-    ]
-  },
-}
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    config.devtool = 'source-map';
+    config.devServer = {
+      contentBase: DIST_DIR,
+      compress: true,
+      port: 9000
+    };
+  }
 
-module.exports = [config, demoConfig];
+  if (argv.mode === 'production') {
+    config.optimization = {
+      minimizer: [new UglifyJsPlugin({
+        parallel: true,
+        text: /\.jsx\?$/i,
+        exclude: /node_modules/
+      })]
+    };
+  }
+
+  return config;
+};

@@ -1,17 +1,10 @@
-import React     from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes            from 'prop-types';
 
-class SideNav extends React.Component {
+class SideNav extends Component {
   constructor(props) {
     super(props);
     this._nav = React.createRef();
-    this.hideNav = this.hideNav.bind(this);
-    this.onTouchStart = this.onTouchStart.bind(this);
-    this.onTouchMove = this.onTouchMove.bind(this);
-    this.onTouchEnd = this.onTouchEnd.bind(this);
-    this.getDefaultContent = this.getDefaultContent.bind(this);
-    this.update = this.update.bind(this);
-    this.getStyle = this.getStyle.bind(this);
   }
 
   hideNav = () => {
@@ -27,7 +20,7 @@ class SideNav extends React.Component {
   }
 
   onTouchMove = evt => {
-    let { openFromRight } = this.props;
+    const { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.currentX = evt.touches[0].pageX;
     const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
@@ -52,7 +45,7 @@ class SideNav extends React.Component {
   }
 
   getDefaultContent = () => {
-    const { items, itemStyle, titleStyle, itemHoverStyle, title } = this.props
+    const { items, itemStyle, titleStyle, itemHoverStyle, title } = this.props;
     const styles = {
       title: {
         background: '#E91E63',
@@ -74,9 +67,9 @@ class SideNav extends React.Component {
 
     const handleItemHover = e => enter => {
       if (enter)
-        Object.assign(e.currentTarget.style, styles.li, (itemHoverStyle || {backgroundColor: '#f5f5f5'}))
+        Object.assign(e.currentTarget.style, styles.li, (itemHoverStyle || {backgroundColor: '#f5f5f5'}));
       else
-        Object.assign(e.currentTarget.style, styles.li)
+        Object.assign(e.currentTarget.style, styles.li);
     };
 
     return (
@@ -89,11 +82,11 @@ class SideNav extends React.Component {
           }
         </ul>
       </div>
-    )
+    );
   }
 
   getStyle = () => {
-    const { openFromRight, showNav } = this.props;
+    const { openFromRight, showNav, style, navStyle } = this.props;
     let styles = {
       root: {
         left     : 0,
@@ -132,28 +125,29 @@ class SideNav extends React.Component {
       }
     };
 
-    Object.assign(styles.root, this.props.style);
-    Object.assign(styles.nav, this.props.navStyle);
+    Object.assign(styles.root, style);
+    Object.assign(styles.nav, navStyle);
     return styles;
   }
 
   render() {
+    const { children } = this.props;
     let styles = this.getStyle();
 
     return(
       <aside style={styles.root}>
         <div style={styles.overlay} onClick={this.hideNav}></div>
         <nav style={styles.nav}
-          onTransitionEnd={(e) => { e.target.style.transition = 'none' }}
+          onTransitionEnd={e => e.target.style.transition = 'none'}
           onTouchStart={this.onTouchStart}
           onTouchMove={this.onTouchMove}
           onTouchEnd={this.onTouchEnd}
           ref={this._nav}
           >
-          {this.props.children || this.getDefaultContent()}
+          {children || this.getDefaultContent()}
         </nav>
       </aside>
-    )
+    );
   }
 }
 
@@ -170,7 +164,7 @@ SideNav.propTypes = {
   openFromRight:  PropTypes.bool,
   onHideNav:      PropTypes.func,
   onShowNav:      PropTypes.func,
-}
+};
 
 let MenuIcon = props => (
   <svg

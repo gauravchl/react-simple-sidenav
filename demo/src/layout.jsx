@@ -62,13 +62,13 @@ export default class Layout extends Component {
 
   toggleSideNav = key => () => {
     this.setState(prevState => {
-      const value = !prevState[key]
-      return { [key]: value }
-    })
+      const value = !prevState[key];
+      return { [key]: value };
+    });
   }
 
   render() {
-    const { showNav1, showNav2, showNav3, showNav4 } = this.state
+    const { showNav1, showNav2, showNav3, showNav4 } = this.state;
     const styles = this.styles;
 
     return (
@@ -155,7 +155,7 @@ export default class Layout extends Component {
           items={['Item1', 'Item2', 'Item3']} />
 
       </div>
-    )
+    );
   }
 }
 
@@ -171,7 +171,7 @@ const example1 = `
       )
     }
   })
-`
+`;
 
 const example2 = `
   <SideNav
@@ -183,8 +183,7 @@ const example2 = `
     itemStyle      =  {{backgroundColor: '#fff'}}
     itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
   />
-
-`
+`;
 
 const example3 = `
   <SideNav
@@ -198,8 +197,7 @@ const example3 = `
       <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
     ]}
   />
-
-`
+`;
 
 const example4 = `
   <SideNav
@@ -209,4 +207,4 @@ const example4 = `
     title='Open From right'
     titleStyle={{backgroundColor: '#FF5722'}}
     items={['Item1', 'Item2', 'Item3']} />
-`
+`;
