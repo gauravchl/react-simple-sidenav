@@ -19,13 +19,25 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.jsx\?$/,
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
         include: SRC_DIR,
         exclude: /node_modules/,
-        use: [
-          'babel-loader',
-          'eslint-loader'
-        ]
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react'
+            ],
+            plugins: [require('@babel/plugin-proposal-class-properties')]
+          }
+        }
       }
     ]
   },
@@ -49,7 +61,7 @@ module.exports = (env, argv) => {
     config.optimization = {
       minimizer: [new UglifyJsPlugin({
         parallel: true,
-        text: /\.jsx\?$/i,
+        text: /\.(js|jsx)$/i,
         exclude: /node_modules/
       })]
     };

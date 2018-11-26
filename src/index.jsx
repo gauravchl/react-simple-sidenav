@@ -20,13 +20,13 @@ class SideNav extends Component {
   }
 
   onTouchMove = evt => {
-    const { openFromRight } = this.props;
+    // const { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.currentX = evt.touches[0].pageX;
-    const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);
+    // const translateX = Math[openFromRight ? 'max' : 'min'](0, this.currentX - this.startX);  // NOTE: not sure how this is being used but I'm not going to remove it.  It does get flagged by eslint that it's an un-used-var
   }
 
-  onTouchEnd = evt => {
+  onTouchEnd = () => {
     const { openFromRight } = this.props;
     if (!this.touchingSideNav) return;
     this.touchingSideNav = false;

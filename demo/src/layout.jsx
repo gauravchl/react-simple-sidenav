@@ -1,5 +1,5 @@
 import React, { Component }   from 'react';
-import SideNav, { MenuIcon }  from '../../src/index.jsx';
+import SideNav, { MenuIcon }  from '../../src/index';
 
 export default class Layout extends Component {
   state = {
@@ -71,6 +71,44 @@ export default class Layout extends Component {
     const { showNav1, showNav2, showNav3, showNav4 } = this.state;
     const styles = this.styles;
 
+    const example1 = <div>
+      <MenuIcon onClick={this.toggleSideNav('showNav1')}/>
+
+      <SideNav
+        showNav = {showNav1}
+        onHideNav = {this.toggleSideNav('showNav1')} />
+    </div>;
+
+    const example2 = <SideNav
+      showNav        =  {showNav2}
+      onHideNav      =  {this.toggleSideNav('showNav2')}
+      title          =  "Hello World"
+      items          =  {['home', 'services', 'about', 'contact']}
+      titleStyle     =  {{backgroundColor: '#4CAF50'}}
+      itemStyle      =  {{backgroundColor: '#fff'}}
+      itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
+    />;
+
+    const example3 = <SideNav
+      showNav={showNav3}
+      onHideNav={this.toggleSideNav('showNav3')}
+      title={<div>Hello octo <img src="git-mark.png" width="26" /></div>}
+      titleStyle={{backgroundColor: '#2196F3'}}
+      items={[
+        <a target="_blank" href="https://github.com/gauravchl/react-simple-sidenav">View Source on github</a>,
+        <a target="_blank" href="https://www.npmjs.com/package/react-simple-sidenav">Install via npm</a>,
+        <a target="_blank" href="https://gauravchl.github.io/react-simple-sidenav/example">demo</a>
+      ]}
+    />;
+
+    const example4 = <SideNav
+      openFromRight={true}
+      showNav={showNav4}
+      onHideNav={this.toggleSideNav('showNav4')}
+      title="Open From right"
+      titleStyle={{backgroundColor: '#FF5722'}}
+      items={['Item1', 'Item2', 'Item3']} />;
+
     return (
       <div style={{paddingTop: 48}}>
         <div style={styles.menuBar}>
@@ -87,7 +125,7 @@ export default class Layout extends Component {
               <div className='ripple'><MenuIcon style={styles.menuIcon} onClick={this.toggleSideNav('showNav1')}/></div>
               Demo 1 [with default styles]
             </div>
-            <div style={styles.codeWrap}><code>{example1}</code></div>
+            <div style={styles.codeWrap}>{example1}</div>
           </div>
 
           <div style={styles.exampleBox}>
@@ -97,7 +135,7 @@ export default class Layout extends Component {
               </div>
               Demo 2 [with custom styles]
             </div>
-            <div style={styles.codeWrap}><code>{example2}</code></div>
+            <div style={styles.codeWrap}>{example2}</div>
           </div>
 
           <div style={styles.exampleBox}>
@@ -107,7 +145,7 @@ export default class Layout extends Component {
               </div>
               Demo 3 [with custom items]
             </div>
-            <div style={styles.codeWrap}><code>{example3}</code></div>
+            <div style={styles.codeWrap}>{example3}</div>
           </div>
 
           <div style={styles.exampleBox}>
@@ -117,13 +155,13 @@ export default class Layout extends Component {
               </div>
               Demo 4 [open from right]
             </div>
-            <div style={styles.codeWrap}><code>{example4}</code></div>
+            <div style={styles.codeWrap}>{example4}</div>
           </div>
         </div>
 
         <SideNav
           showNav={showNav1}
-          onShowNav={_ => console.log('onShowNav')}
+          onShowNav={() => console.log('onShowNav')}
           onHideNav={this.toggleSideNav('showNav1')} />
 
         <SideNav
@@ -158,53 +196,3 @@ export default class Layout extends Component {
     );
   }
 }
-
-const example1 = `
-  React.createClass({
-    render() {
-      return(
-        <MenuIcon onClick={this.toggleSideNav('showNav1')}/>
-
-        <SideNav
-          showNav = {showNav1}
-          onHideNav = {this.toggleSideNav('showNav1')} />
-      )
-    }
-  })
-`;
-
-const example2 = `
-  <SideNav
-    showNav        =  {showNav2}
-    onHideNav      =  {this.toggleSideNav('showNav2')}
-    title          =  "Hello World"
-    items          =  {['home', 'services', 'about', 'contact']}
-    titleStyle     =  {{backgroundColor: '#4CAF50'}}
-    itemStyle      =  {{backgroundColor: '#fff'}}
-    itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
-  />
-`;
-
-const example3 = `
-  <SideNav
-    showNav={showNav3}
-    onHideNav={this.toggleSideNav('showNav3'):false})}
-    title={<div>Hello octo <img src='git-mark.png' width='26' /></div>}
-    titleStyle={{backgroundColor: '#2196F3'}}
-    items={[
-      <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
-      <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
-      <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
-    ]}
-  />
-`;
-
-const example4 = `
-  <SideNav
-    openFromRight={true}
-    showNav={showNav4}
-    onHideNav={this.toggleSideNav('showNav4')}
-    title='Open From right'
-    titleStyle={{backgroundColor: '#FF5722'}}
-    items={['Item1', 'Item2', 'Item3']} />
-`;
