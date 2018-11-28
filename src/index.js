@@ -1,7 +1,7 @@
 import React    from 'react';
 import ReactDOM from 'react-dom';
-import Layout   from './layout';
+import Demo     from './demo.jsx';
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<Layout />, document.getElementById('main'));
+  ReactDOM.render(<Demo />, document.getElementById('main'));
 });

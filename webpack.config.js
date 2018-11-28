@@ -1,21 +1,30 @@
-const path = require('path');
 const webpack = require('webpack');
+const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src');
-const DEMO_DIR = path.resolve(__dirname, 'demo');
 
 const config = {
   entry: {
-    'simple-sidenav': `${SRC_DIR}/index.jsx`,
-    demo: `${DEMO_DIR}/src/index.jsx`
+    'simple-sidenav': `${SRC_DIR}/SideNav.jsx`,
+    demo: `${SRC_DIR}/index.js`
   },
   output: {
     path: DIST_DIR,
     filename: '[name].js',
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'var',
   },
+  plugins: [
+    new CleanWebpackPlugin(['dist'], { DIST_DIR }),
+    new CopyWebpackPlugin([
+      { from: './public/index.html', to: './', force: true },
+      { from: './public/git-mark.png', to: './', force: true },
+      { from: './public/main.css', to: './', force: true },
+    ]),
+  ],
   module: {
     rules: [
       {
@@ -40,10 +49,6 @@ const config = {
         }
       }
     ]
-  },
-  externals: {
-    react: 'react',
-    'react-dom': 'react-dom',
   },
 };
 

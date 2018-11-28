@@ -1,7 +1,7 @@
 import React, { Component }   from 'react';
-import SideNav, { MenuIcon }  from '../../src/index';
+import SideNav, { MenuIcon }  from './SideNav.jsx';
 
-export default class Layout extends Component {
+export default class Demo extends Component {
   state = {
     showNav1: false,
     showNav2: false,
@@ -71,13 +71,9 @@ export default class Layout extends Component {
     const { showNav1, showNav2, showNav3, showNav4 } = this.state;
     const styles = this.styles;
 
-    const example1 = <div>
-      <MenuIcon onClick={this.toggleSideNav('showNav1')}/>
-
-      <SideNav
+    const example1 = <SideNav
         showNav = {showNav1}
-        onHideNav = {this.toggleSideNav('showNav1')} />
-    </div>;
+        onHideNav = {this.toggleSideNav('showNav1')} />;
 
     const example2 = <SideNav
       showNav        =  {showNav2}
@@ -182,7 +178,7 @@ export default class Layout extends Component {
             <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
             <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
             <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>,
-            ]} />
+          ]} />
 
         <SideNav
           openFromRight={true}

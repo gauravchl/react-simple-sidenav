@@ -166,7 +166,7 @@ SideNav.propTypes = {
   onShowNav:      PropTypes.func,
 };
 
-let MenuIcon = props => (
+const MenuIcon = props => (
   <svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"
