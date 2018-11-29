@@ -4,7 +4,7 @@ Simple, light weight(4.78 kB), fully customizable React component for side navig
 
 Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
 
-**Demo:**  https://gauravchl.github.io/react-simple-sidenav/demo/
+**Demo:**  https://gauravchl.github.io/react-simple-sidenav/dist/
 
 <img width="400" alt="screen shot 2016-07-24 at 2 28 16 pm" src="https://cloud.githubusercontent.com/assets/3471415/17082916/f53e196e-51ab-11e6-84bc-9fc36068c42e.png">
 
