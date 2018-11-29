@@ -66,7 +66,7 @@ module.exports = (env, argv) => {
     config.optimization = {
       minimizer: [new UglifyJsPlugin({
         parallel: true,
-        text: /\.(js|jsx)$/i,
+        test: /\.(js|jsx)$/i,
         exclude: /node_modules/
       })]
     };

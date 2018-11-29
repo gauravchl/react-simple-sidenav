@@ -2,30 +2,43 @@
   "name": "react-simple-sidenav",
   "version": "1.0.1",
   "description": "A simple React component for side navigation",
-  "main": "./src/index.jsx",
-  "scripts": {
-    "start:dev": "webpack-dev-server --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production",
-    "watch": "webpack --watch --mode=development --progress",
-    "nuke": "rm -rf node_modules/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gauravchl/react-simple-sidenav.git"
-  },
   "keywords": [
     "react",
     "react-component",
     "navigation",
     "sidenav"
   ],
-  "author": "Gaurav Chikhale",
-  "license": "MIT",
+  "homepage": "https://github.com/gauravchl/react-simple-sidenav#readme",
   "bugs": {
     "url": "https://github.com/gauravchl/react-simple-sidenav/issues"
   },
-  "homepage": "https://github.com/gauravchl/react-simple-sidenav#readme",
+  "license": "MIT",
+  "author": {
+    "name": "Gaurav Chikhale",
+    "email": ""
+  },
+  "contributors": [
+    {
+      "name": "Seth Bertlshofer",
+      "email": "celestials2013@gmail.com"
+    }
+  ],
+  "files": [
+    "dist/simple-sidenav.js"
+  ],
+  "main": "dist/simple-sidenav.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauravchl/react-simple-sidenav.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack-dev-server --mode=development",
+    "build:dev": "webpack --mode=development",
+    "build": "webpack --mode=production",
+    "prepack": "webpack --mode=production",
+    "nuke": "rm -rf node_modules/"
+  },
   "Dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
@@ -47,9 +60,16 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.26.0",
+    "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
+  },
+  "peerDependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "engines": {
+    "node": ">=10.13.0"
   },
   "babel": {
     "presets": [
