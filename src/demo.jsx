@@ -91,9 +91,9 @@ export default class Demo extends Component {
       title={<div>Hello octo <img src="git-mark.png" width="26" /></div>}
       titleStyle={{backgroundColor: '#2196F3'}}
       items={[
-        <a target="_blank" href="https://github.com/gauravchl/react-simple-sidenav">View Source on github</a>,
-        <a target="_blank" href="https://www.npmjs.com/package/react-simple-sidenav">Install via npm</a>,
-        <a target="_blank" href="https://gauravchl.github.io/react-simple-sidenav/example">demo</a>
+        <a key="example3-1" target="_blank" rel="noopener noreferrer" href="https://github.com/gauravchl/react-simple-sidenav">View Source on github</a>,
+        <a key="example3-2" target="_blank" rel="noopener noreferrer" href="https://www.npmjs.com/package/react-simple-sidenav">Install via npm</a>,
+        <a key="example3-3" target="_blank" rel="noopener noreferrer" href="https://gauravchl.github.io/react-simple-sidenav/example">demo</a>
       ]}
     />;
 
@@ -175,9 +175,9 @@ export default class Demo extends Component {
           title={<div>Hello octo <img src='git-mark.png' width='26'/></div>}
           titleStyle={styles.bg3}
           items={[
-            <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
-            <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
-            <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>,
+            <a key="showNav3-1" target="_blank" rel="noopener noreferrer" href="https://github.com/gauravchl/react-simple-sidenav">View Source on github</a>,
+            <a key="showNav3-2" target="_blank" rel="noopener noreferrer" href="https://www.npmjs.com/package/react-simple-sidenav">Install via npm</a>,
+            <a key="showNav3-3" target="_blank" rel="noopener noreferrer" href="https://gauravchl.github.io/react-simple-sidenav/example">demo</a>,
           ]} />
 
         <SideNav

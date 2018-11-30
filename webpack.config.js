@@ -15,7 +15,7 @@ const config = {
   output: {
     path: DIST_DIR,
     filename: '[name].js',
-    libraryTarget: 'var',
+    libraryTarget: 'commonjs',
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], { DIST_DIR }),
