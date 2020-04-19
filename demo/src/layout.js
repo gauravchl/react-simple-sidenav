@@ -1,6 +1,5 @@
 import React from 'react';
-import SideNav, { MenuIcon } from '../../src/index.jsx';
-
+import SideNav, { MenuIcon } from '../../src/index.js';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -10,13 +9,10 @@ class Layout extends React.Component {
       showNav2: false,
       showNav3: false,
       showNav4: false,
-    }
-
+    };
   }
 
-
   getStyle() {
-
     let styles = {
       menuBar: {
         width: '100%',
@@ -66,106 +62,127 @@ class Layout extends React.Component {
         padding: 12,
         verticalAlign: 'middle',
       },
-    }
+    };
     return styles;
   }
-
 
   render() {
     let styles = this.getStyle();
     return (
-      <div style={{paddingTop: 48}}>
+      <div style={{ paddingTop: 48 }}>
         <div style={styles.menuBar}>
-          <MenuIcon onClick={()=>this.setState({showNav1: true})} style={{verticalAlign: 'middle', padding: '12px'}}/>
+          <MenuIcon
+            onClick={() => this.setState({ showNav1: true })}
+            style={{ verticalAlign: 'middle', padding: '12px' }}
+          />
           Demo [react-simple-sidenav]
-          <a style={{margin: '0 8px 0 auto'}} href='https://github.com/gauravchl/react-simple-sidenav'>
-            <img width='28' src='git-mark.png'/>
+          <a style={{ margin: '0 8px 0 auto' }} href="https://github.com/gauravchl/react-simple-sidenav">
+            <img width="28" src="git-mark.png" />
           </a>
         </div>
-
 
         <div style={styles.exampleWrapper}>
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg1)}>
-              <div className='ripple'><MenuIcon style={styles.menuIcon} onClick={()=>this.setState({showNav1: true})}/></div>
+              <div className="ripple">
+                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({ showNav1: true })} />
+              </div>
               Demo 1 [with default styles]
             </div>
-            <div style={styles.codeWrap}><code>{example1}</code></div>
+            <div style={styles.codeWrap}>
+              <code>{example1}</code>
+            </div>
           </div>
 
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg2)}>
-              <div className='ripple delay-1'>
-                <MenuIcon style={styles.menuIcon} onClick={()=>this.setState({showNav2: true})}/>
+              <div className="ripple delay-1">
+                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({ showNav2: true })} />
               </div>
               Demo 2 [with custom styles]
             </div>
-            <div style={styles.codeWrap}><code>{example2}</code></div>
+            <div style={styles.codeWrap}>
+              <code>{example2}</code>
+            </div>
           </div>
 
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg3)}>
-              <div className='ripple delay-2'>
-                <MenuIcon style={styles.menuIcon} onClick={()=>this.setState({showNav3: true})}/>
+              <div className="ripple delay-2">
+                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({ showNav3: true })} />
               </div>
               Demo 3 [with custom items]
             </div>
-            <div style={styles.codeWrap}><code>{example3}</code></div>
+            <div style={styles.codeWrap}>
+              <code>{example3}</code>
+            </div>
           </div>
 
           <div style={styles.exampleBox}>
             <div style={Object.assign({}, styles.topBar, styles.bg4)}>
-              <div className='ripple delay-2'>
-                <MenuIcon style={styles.menuIcon} onClick={()=>this.setState({showNav4: true})}/>
+              <div className="ripple delay-2">
+                <MenuIcon style={styles.menuIcon} onClick={() => this.setState({ showNav4: true })} />
               </div>
               Demo 4 [open from right]
             </div>
-            <div style={styles.codeWrap}><code>{example4}</code></div>
+            <div style={styles.codeWrap}>
+              <code>{example4}</code>
+            </div>
           </div>
         </div>
 
-
         <SideNav
           showNav={this.state.showNav1}
-          onShowNav={_ => console.log('onShowNav')}
-          onHideNav={()=>this.setState({showNav1: false})} />
+          onShowNav={(_) => console.log('onShowNav')}
+          onHideNav={() => this.setState({ showNav1: false })}
+        />
 
         <SideNav
           showNav={this.state.showNav2}
-          onHideNav={()=>this.setState({showNav2: false})}
-          title='Hello World'
+          onHideNav={() => this.setState({ showNav2: false })}
+          title="Hello World"
           titleStyle={styles.bg2}
           items={['home', 'services', 'about', 'contact']}
-          itemStyle={{backgroundColor: '#fff'}}
-          itemHoverStyle={{backgroundColor: '#CDDC39'}} />
+          itemStyle={{ backgroundColor: '#fff' }}
+          itemHoverStyle={{ backgroundColor: '#CDDC39' }}
+        />
 
         <SideNav
           showNav={this.state.showNav3}
-          onHideNav={()=>this.setState({showNav3: false})}
-          title={<div>Hello octo <img src='git-mark.png' width='26'/></div>}
+          onHideNav={() => this.setState({ showNav3: false })}
+          title={
+            <div>
+              Hello octo <img src="git-mark.png" width="26" />
+            </div>
+          }
           titleStyle={styles.bg3}
           items={[
-            <a target='_blank' href='https://github.com/gauravchl/react-simple-sidenav'>View Source on github</a>,
-            <a target='_blank' href='https://www.npmjs.com/package/react-simple-sidenav'>Install via npm</a>,
-            <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>,
-            ]} />
+            <a target="_blank" href="https://github.com/gauravchl/react-simple-sidenav">
+              View Source on github
+            </a>,
+            <a target="_blank" href="https://www.npmjs.com/package/react-simple-sidenav">
+              Install via npm
+            </a>,
+            <a target="_blank" href="https://gauravchl.github.io/react-simple-sidenav/example">
+              demo
+            </a>,
+          ]}
+        />
 
         <SideNav
           openFromRight={true}
           showNav={this.state.showNav4}
-          onHideNav={()=>this.setState({showNav4: false})}
-          title='Open From right'
+          onHideNav={() => this.setState({ showNav4: false })}
+          title="Open From right"
           titleStyle={styles.bg4}
-          items={['Item1', 'Item2', 'Item3']} />
-
-
+          items={['Item1', 'Item2', 'Item3']}
+        />
       </div>
-    )
+    );
   }
 }
 
-
-export default Layout
+export default Layout;
 
 const example1 = `
   import react from 'react';
@@ -182,8 +199,7 @@ const example1 = `
       )
     }
   })
-`
-
+`;
 
 const example2 = `
   <SideNav
@@ -196,8 +212,7 @@ const example2 = `
     itemHoverStyle =  {{backgroundColor: '#CDDC39'}}
     />
 
-`
-
+`;
 
 const example3 = `
   <SideNav
@@ -211,7 +226,7 @@ const example3 = `
       <a target='_blank' href='https://gauravchl.github.io/react-simple-sidenav/example'>demo</a>
       ]} />
 
-`
+`;
 const example4 = `
   <SideNav
     openFromRight={true}
@@ -220,4 +235,4 @@ const example4 = `
     title='Open From right'
     titleStyle={{backgroundColor: '#FF5722'}}
     items={['Item1', 'Item2', 'Item3']} />
-`
+`;
