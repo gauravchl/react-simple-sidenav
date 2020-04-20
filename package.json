@@ -1,6 +1,6 @@
 {
   "name": "react-simple-sidenav",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A simple React component for side navigation",
   "main": "dist/bundle.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "navigation",
     "sidenav"
   ],
-  "author": "Gaurav Chikhale",
+  "author": "Gaurav Chikhale <mail@gauravchl.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gauravchl/react-simple-sidenav/issues"
