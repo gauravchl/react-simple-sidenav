@@ -1,19 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 const SideNav = (props) => {
-  const {
-    style,
-    navStyle,
-    titleStyle,
-    itemStyle,
-    itemHoverStyle,
-    title,
-    children,
-    items,
-    showNav,
-    openFromRight,
-    onHideNav,
-  } = props;
+  const { style, navStyle, children, showNav, openFromRight, onHideNav } = props;
 
   const navEle = useRef();
   let startX;
@@ -49,58 +37,6 @@ const SideNav = (props) => {
     requestAnimationFrame(update);
     const translateX = Math[openFromRight ? 'max' : 'min'](0, currentX - startX);
     navEle.current.style.transform = `translateX(${translateX}px)`;
-  };
-
-  const getDefaultContent = () => {
-    let styles = {
-      title: {
-        background: '#E91E63',
-        color: '#fff',
-        fontWeight: 400,
-        margin: 0,
-        lineHeight: '82px',
-        padding: 22,
-        ...(titleStyle || {}),
-      },
-      li: {
-        padding: 22,
-        cursor: 'pointer',
-        backgroundColor: '#fff',
-        ...(itemStyle || {}),
-      },
-    };
-
-    let handleItemHover = (e, enter) => {
-      const ele = e.currentTarget;
-      ele.style = { ...ele.style, ...styles.li };
-      if (enter) {
-        ele.style = { ...ele.style, ...(itemHoverStyle || { backgroundColor: '#f5f5f5' }) };
-      }
-    };
-
-    return (
-      <div>
-        <h1 style={styles.title}>{title || 'Simple SideNav'}</h1>
-        <ul>
-          {items ? (
-            items.map((item, key) => (
-              <li
-                key={'item' + key}
-                style={styles.li}
-                onMouseOver={(e) => handleItemHover(e, true)}
-                onMouseOut={(e) => handleItemHover(e, false)}
-              >
-                {item}
-              </li>
-            ))
-          ) : (
-            <li key="item1" style={styles.li}>
-              Item 1
-            </li>
-          )}
-        </ul>
-      </div>
-    );
   };
 
   const styles = {
@@ -156,7 +92,7 @@ const SideNav = (props) => {
         onTouchEnd={onTouchEnd}
         ref={navEle}
       >
-        {children || getDefaultContent()}
+        {children || <DefaultContent {...props} />}
       </nav>
     </aside>
   );
@@ -179,3 +115,57 @@ const MenuIcon = (props) => (
 
 export { SideNav, MenuIcon };
 export default SideNav;
+
+const DefaultContent = (props) => {
+  const { titleStyle, itemStyle, itemHoverStyle, title, items } = props;
+  const [hoverItemKey, setHoverItemKey] = useState();
+
+  const handleItemHover = (e, enter, key) => {
+    if (enter) return setHoverItemKey(key);
+    setHoverItemKey();
+  };
+
+  const getItemStyle = (key) => {
+    return {
+      padding: '22px',
+      cursor: 'pointer',
+      backgroundColor: '#fff',
+      ...(itemStyle || {}),
+      ...(key === hoverItemKey ? itemHoverStyle || { backgroundColor: '#f5f5f5' } : {}),
+    };
+  };
+
+  const titleStyles = {
+    background: '#E91E63',
+    color: '#fff',
+    fontWeight: 400,
+    margin: 0,
+    lineHeight: '82px',
+    padding: 22,
+    ...(titleStyle || {}),
+  };
+
+  return (
+    <div>
+      <h1 style={titleStyles}>{title || 'Simple SideNav'}</h1>
+      <ul>
+        {items ? (
+          items.map((item, key) => (
+            <li
+              key={'item' + key}
+              style={getItemStyle(key)}
+              onMouseOver={(e) => handleItemHover(e, true, key)}
+              onMouseOut={(e) => handleItemHover(e, false)}
+            >
+              {item}
+            </li>
+          ))
+        ) : (
+          <li key="item1" style={getItemStyle(1)}>
+            Item 1
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+};
