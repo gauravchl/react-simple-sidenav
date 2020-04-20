@@ -16,8 +16,20 @@ npm install react-simple-sidenav
 
 **Use:**
 
-```html
-import SideNav from 'react-simple-sidenav'; <SideNav title="Simple Sidenav" items={['Item 1', 'Item 2']} />
+```javascript
+import React, { useState } from 'react';
+import SideNav, { MenuIcon } from 'react-simple-sidenav';
+
+const MyComponent = (props) => {
+  const [showNav, setShowNav] = useState();
+
+  return (
+    <div>
+      <MenuIcon onClick={() => setShowNav(true)} />
+      <SideNav showNav={showNav} onHideNav={() => setShowNav(false)} />
+    </div>
+  );
+};
 ```
 
 **Props:**
@@ -38,23 +50,6 @@ import SideNav from 'react-simple-sidenav'; <SideNav title="Simple Sidenav" item
 | children       | node     | Content of navigation. If supplying children to SideNav, title and items will be ignore and replaced by children |
 
 **Examples:**
-
-```javascript
-// With default styles
-import React, { useState } from 'react';
-import SideNav, { MenuIcon } from 'react-simple-sidenav';
-
-const MyComponent = (props) => {
-  const [showNav, setShowNav] = useState();
-
-  return (
-    <div>
-      <MenuIcon onClick={() => setShowNav(true)} />
-      <SideNav showNav={showNav} onHideNav={() => setShowNav(false)} />
-    </div>
-  );
-};
-```
 
 ```javascript
 // With custom styles
