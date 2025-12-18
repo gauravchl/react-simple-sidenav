@@ -15,7 +15,7 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [react()],
   root: resolve(__dirname),
-  base: './',
+  base: '/react-simple-sidenav/',
   resolve: {
     alias: {
       // Alias the package name to the built distribution
@@ -23,7 +23,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: resolve(__dirname, '../demo-dist'),
+    outDir: resolve(__dirname, '../docs'),
     emptyOutDir: true,
   },
 });

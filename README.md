@@ -14,7 +14,7 @@ A lightweight, customizable, and touch-friendly side navigation component for Re
 - ♿️ Accessible
 - 🚀 Modern React 18+ support
 
-**Demo:** https://gauravchl.github.io/react-simple-sidenav/demo/
+**Demo:** https://gauravchl.github.io/react-simple-sidenav
 
 <img width="400" alt="React Simple SideNav Demo" src="https://cloud.githubusercontent.com/assets/3471415/17082916/f53e196e-51ab-11e6-84bc-9fc36068c42e.png">
 
