@@ -1,66 +1,116 @@
-# react-simple-sidenav [![npm](https://img.shields.io/npm/v/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav) [![npm](https://img.shields.io/npm/dm/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav)
+# react-simple-sidenav
 
-Simple, light weight(4.78 kB), fully customizable React component for side navigation.
+[![npm](https://img.shields.io/npm/v/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav)
+[![npm](https://img.shields.io/npm/dm/react-simple-sidenav.svg?maxAge=000)](https://www.npmjs.com/package/react-simple-sidenav)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/react-simple-sidenav)](https://bundlephobia.com/package/react-simple-sidenav)
 
-Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)
+A lightweight, customizable, and touch-friendly side navigation component for React. Built with TypeScript and fully compatible with React 18+.
+
+✨ **Features:**
+- ⚡️ Lightweight (only 1.45 kB gzipped)
+- 🎨 Fully customizable styles
+- 📱 Touch-friendly with swipe gestures
+- 🔧 TypeScript support
+- ♿️ Accessible
+- 🚀 Modern React 18+ support
 
 **Demo:** https://gauravchl.github.io/react-simple-sidenav/demo/
 
-<img width="400" alt="screen shot 2016-07-24 at 2 28 16 pm" src="https://cloud.githubusercontent.com/assets/3471415/17082916/f53e196e-51ab-11e6-84bc-9fc36068c42e.png">
+<img width="400" alt="React Simple SideNav Demo" src="https://cloud.githubusercontent.com/assets/3471415/17082916/f53e196e-51ab-11e6-84bc-9fc36068c42e.png">
 
-**Install:**
+## Installation
 
-```
+```bash
 npm install react-simple-sidenav
 ```
 
-**Use:**
+or with yarn:
 
-```javascript
+```bash
+yarn add react-simple-sidenav
+```
+
+or with bun:
+
+```bash
+bun add react-simple-sidenav
+```
+
+## Quick Start
+
+```tsx
 import React, { useState } from 'react';
 import SideNav, { MenuIcon } from 'react-simple-sidenav';
 
-const MyComponent = (props) => {
-  const [showNav, setShowNav] = useState();
+const MyComponent: React.FC = () => {
+  const [showNav, setShowNav] = useState(false);
 
   return (
     <div>
       <MenuIcon onClick={() => setShowNav(true)} />
-      <SideNav showNav={showNav} onHideNav={() => setShowNav(false)} />
+      <SideNav
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+      />
     </div>
   );
 };
 ```
 
-**Props:**
+## API
 
-| Props          | Type     | Description                                                                                                      |
-| -------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| style          | object   | Style for root element                                                                                           |
-| navStyle       | object   | Style for nav element                                                                                            |
-| titleStyle     | object   | Styles for title                                                                                                 |
-| itemStyle      | object   | Styles for item                                                                                                  |
-| itemHoverStyle | object   | Hover style for item                                                                                             |
-| title          | node     | Will display on top                                                                                              |
-| items          | [node]   | Array of items in navigation list below the title                                                                |
-| showNav        | boolean  | Control whether to open or close side navigation                                                                 |
-| openFromRight  | boolean  | This opens navigation from right side of the window, default is false (from left side).                          |
-| onShowNav      | function | Trigger when navigation opens                                                                                    |
-| onHideNav      | function | Trigger when navigation close                                                                                    |
-| children       | node     | Content of navigation. If supplying children to SideNav, title and items will be ignore and replaced by children |
+### Props
 
-**Examples:**
+| Prop           | Type                | Default     | Description                                                                                    |
+| -------------- | ------------------- | ----------- | ---------------------------------------------------------------------------------------------- |
+| showNav        | `boolean`           | `false`     | Controls whether the side navigation is open or closed                                         |
+| onHideNav      | `() => void`        | -           | Callback function triggered when the navigation closes                                         |
+| onShowNav      | `() => void`        | -           | Callback function triggered when the navigation opens                                          |
+| openFromRight  | `boolean`           | `false`     | Opens navigation from the right side instead of left                                           |
+| style          | `CSSProperties`     | -           | Custom styles for the root container element                                                   |
+| navStyle       | `CSSProperties`     | -           | Custom styles for the navigation panel                                                         |
+| titleStyle     | `CSSProperties`     | -           | Custom styles for the title element                                                            |
+| itemStyle      | `CSSProperties`     | -           | Custom styles for navigation items                                                             |
+| itemHoverStyle | `CSSProperties`     | -           | Custom styles for navigation items on hover                                                    |
+| title          | `ReactNode`         | -           | Content to display at the top of the navigation                                                |
+| items          | `ReactNode[]`       | -           | Array of navigation items                                                                      |
+| children       | `ReactNode`         | -           | Custom content for the navigation. When provided, `title` and `items` props are ignored       |
 
-```javascript
-// With custom styles
+## Examples
+
+### Basic Usage
+
+```tsx
 import React, { useState } from 'react';
 import SideNav, { MenuIcon } from 'react-simple-sidenav';
 
-const MyComponent = (props) => {
-  const [showNav, setShowNav] = useState();
+const MyComponent: React.FC = () => {
+  const [showNav, setShowNav] = useState(false);
+
   return (
-    <div>
-      <MenuIcon onClick={() => setShowNav(true)} />{' '}
+    <>
+      <MenuIcon onClick={() => setShowNav(true)} />
+      <SideNav
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+      />
+    </>
+  );
+};
+```
+
+### With Custom Styles
+
+```tsx
+import React, { useState } from 'react';
+import SideNav, { MenuIcon } from 'react-simple-sidenav';
+
+const MyComponent: React.FC = () => {
+  const [showNav, setShowNav] = useState(false);
+
+  return (
+    <>
+      <MenuIcon onClick={() => setShowNav(true)} />
       <SideNav
         showNav={showNav}
         onHideNav={() => setShowNav(false)}
@@ -70,48 +120,134 @@ const MyComponent = (props) => {
         itemStyle={{ backgroundColor: '#fff' }}
         itemHoverStyle={{ backgroundColor: '#CDDC39' }}
       />
-    </div>
+    </>
   );
 };
 ```
 
-```javascript
-// With custom items
+### With Custom Items
+
+```tsx
 import React, { useState } from 'react';
 import SideNav, { MenuIcon } from 'react-simple-sidenav';
 
-const MyComponent = (props) => {
-  const [showNav, setShowNav] = useState();
+const MyComponent: React.FC = () => {
+  const [showNav, setShowNav] = useState(false);
+
   const navItems = [
-    <a target="_blank" href="someLink">
-      Link1
-    </a>,
-    <a target="_blank" href="someLink">
-      Link2
-    </a>,
-    <a target="_blank" href="someLink">
-      Link3
-    </a>,
+    <a key="1" href="/home">Home</a>,
+    <a key="2" href="/about">About</a>,
+    <a key="3" href="/contact">Contact</a>,
   ];
 
-  const title = <h1>Hello octo </h1>;
-
   return (
-    <div>
+    <>
       <MenuIcon onClick={() => setShowNav(true)} />
-      <SideNav showNav={showNav} onHideNav={() => setShowNav(false)} title={title} items={navItems} />
-    </div>
+      <SideNav
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+        title={<h2>Navigation</h2>}
+        items={navItems}
+      />
+    </>
   );
 };
 ```
 
-**Contributing:**
+### Open From Right
 
-Please feel free to submit any bugs or suggestions as issues. Pull requests are welcome.
-To build package locally run following commands which will build the package from source and update the demo inside `react-simple-sidenav/demo/`.
+```tsx
+import React, { useState } from 'react';
+import SideNav, { MenuIcon } from 'react-simple-sidenav';
 
+const MyComponent: React.FC = () => {
+  const [showNav, setShowNav] = useState(false);
+
+  return (
+    <>
+      <MenuIcon onClick={() => setShowNav(true)} />
+      <SideNav
+        openFromRight={true}
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+        title="Right Side Menu"
+        items={['Item1', 'Item2', 'Item3']}
+      />
+    </>
+  );
+};
 ```
-cd /react-simple-sidenav/
-npm install
-npm run build
+
+### With Custom Children
+
+```tsx
+import React, { useState } from 'react';
+import SideNav, { MenuIcon } from 'react-simple-sidenav';
+
+const MyComponent: React.FC = () => {
+  const [showNav, setShowNav] = useState(false);
+
+  return (
+    <>
+      <MenuIcon onClick={() => setShowNav(true)} />
+      <SideNav
+        showNav={showNav}
+        onHideNav={() => setShowNav(false)}
+      >
+        <div style={{ padding: '20px' }}>
+          <h2>Custom Content</h2>
+          <p>You can put any React components here!</p>
+          <button onClick={() => setShowNav(false)}>Close</button>
+        </div>
+      </SideNav>
+    </>
+  );
+};
 ```
+
+## TypeScript Support
+
+This package is written in TypeScript and includes type definitions. All props are fully typed:
+
+```tsx
+import type { SideNavProps, MenuIconProps } from 'react-simple-sidenav';
+```
+
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/gauravchl/react-simple-sidenav.git
+cd react-simple-sidenav
+
+# Install dependencies with bun
+bun install
+
+# Build library first (required before running demo)
+bun run build
+
+# Start development server for demo
+# Note: The demo imports from dist/, so rebuild after source changes
+bun run dev
+
+# Build demo for production
+bun run build:demo
+```
+
+**Development Workflow:**
+1. Make changes to `src/index.tsx`
+2. Run `bun run build` to rebuild the library
+3. The demo will hot-reload and pick up the changes
+
+## License
+
+MIT © [Gaurav Chikhale](https://github.com/gauravchl)
+
+## Credits
+
+Inspired by [Side Navigation Bar TL;DW episode of Supercharged](https://youtu.be/Mhnj3PiPnZw)

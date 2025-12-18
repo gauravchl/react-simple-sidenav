@@ -1,56 +1,103 @@
-body{
-  font-family: sans-serif;
-  padding: 0;
-  margin: 0;
-}
-ul{
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-li:hover{
-  background: #E0E0E0;
+@import "tailwindcss";
+
+@layer base {
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
 }
 
+@layer components {
+  .ripple {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
 
-.ripple{
-  position: relative;
-  display: inline-block;
+  .ripple:hover {
+    transform: scale(1.05);
+  }
+
+  .ripple::after {
+    content: '';
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: ripple 3s infinite;
+  }
+
+  .ripple.delay-1::after {
+    animation-delay: 1s;
+  }
+
+  .ripple.delay-2::after {
+    animation-delay: 2s;
+  }
+
+  .example-box {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .example-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
 }
-.ripple:after{
-  content: '';
-  width: 48px;
-  height: 48px;
-  opacity: 0;
-  position: absolute;
-  background: rgba(0,0,0,.6);
-  border-radius: 50%;
-  animation: ripple 4s infinite;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  margin: auto;
-  pointer-events: none;
-}
-.ripple.delay-1:after{
-  animation-delay: 2s
-}
-.ripple.delay-2:after{
-  animation-delay: 3s
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 @keyframes ripple {
-  0%{
+  0% {
     transform: scale(0);
     opacity: 1;
   }
-  40%{
-    transform: scale(1);
+  50% {
+    transform: scale(1.2);
     opacity: 0;
   }
-  100%{
-    transform: scale(1);
-    opacity: 0
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
